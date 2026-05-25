@@ -257,10 +257,95 @@
                         </div>
                     </section>
 
-                    <!-- ========== SECONDARY ROW (จะใส่ chart ใน Step 4) ========== -->
-                    <section class="content__placeholder" style="margin-top: 24px;">
-                        <p>📊 Charts will appear here in Step 4</p>
-                    </section>
+                    <!-- ========== CHARTS ROW 1 ========== -->
+                    <div class="charts-grid">
+
+                        <!-- ----- Line Chart (ใหญ่ ซ้าย) ----- -->
+                        <div class="chart-card chart-card--large" data-aos="fade-up">
+
+                            <div class="chart-card__header">
+                                <div>
+                                    <h3 class="chart-card__title">Ticket Trends</h3>
+                                    <p class="chart-card__subtitle">Last 7 days overview</p>
+                                </div>
+                                <!-- Filter tabs -->
+                                <div class="chart-tabs" id="trendTabs">
+                                    <button class="chart-tab chart-tab--active" data-period="7">7D</button>
+                                    <button class="chart-tab" data-period="30">30D</button>
+                                    <button class="chart-tab" data-period="90">90D</button>
+                                </div>
+                            </div>
+
+                            <div class="chart-card__body">
+                                <canvas id="trendChart"></canvas>
+                                <!-- canvas = พื้นที่วาด chart, ต้องมี id ไม่ซ้ำกัน -->
+                            </div>
+
+                        </div>
+
+                        <!-- ----- Doughnut Chart (เล็ก ขวา) ----- -->
+                        <div class="chart-card chart-card--small" data-aos="fade-up" data-aos-delay="100">
+
+                            <div class="chart-card__header">
+                                <div>
+                                    <h3 class="chart-card__title">Ticket Status</h3>
+                                    <p class="chart-card__subtitle">Current breakdown</p>
+                                </div>
+                            </div>
+                            <!-- ใหม่: ครอบด้วย wrapper ที่มีขนาดคงที่ -->
+                            <div class="chart-card__body chart-card__body--center">
+                                <div class="doughnut-wrapper">
+                                    <canvas id="statusChart"></canvas>
+                                    <!-- canvas อยู่ใน wrapper สี่เหลี่ยมจัตุรัส 200x200 -->
+                                    <!-- Chart.js จะ fill ตาม wrapper เอง ไม่ถูก CSS รบกวน -->
+                                </div>
+                            </div>
+
+                            <!-- Legend แบบ custom (สวยกว่า default ของ Chart.js) -->
+                            <div class="chart-legend" id="statusLegend"></div>
+
+                        </div>
+                    </div>
+
+                    <!-- ========== CHARTS ROW 2 ========== -->
+                    <div class="charts-grid charts-grid--secondary" style="margin-top: 20px;">
+
+                        <!-- ----- Bar Chart (ซ้าย) ----- -->
+                        <div class="chart-card" data-aos="fade-up">
+
+                            <div class="chart-card__header">
+                                <div>
+                                    <h3 class="chart-card__title">Tickets by Department</h3>
+                                    <p class="chart-card__subtitle">This month</p>
+                                </div>
+                            </div>
+
+                            <div class="chart-card__body">
+                                <canvas id="deptChart"></canvas>
+                            </div>
+
+                        </div>
+
+                        <!-- ----- Recent Activity Feed (ขวา) ----- -->
+                        <div class="chart-card" data-aos="fade-up" data-aos-delay="100">
+
+                            <div class="chart-card__header">
+                                <div>
+                                    <h3 class="chart-card__title">Recent Activity</h3>
+                                    <p class="chart-card__subtitle">Latest ticket updates</p>
+                                </div>
+                                <span class="badge-live">
+                                    <span class="badge-live__dot"></span>
+                                    Live
+                                </span>
+                            </div>
+
+                            <!-- Activity list จะถูก inject โดย JS -->
+                            <div class="activity-feed" id="activityFeed"></div>
+
+                        </div>
+
+                    </div>
 
                 </main>
             </div>
@@ -296,6 +381,7 @@
         <script src="assets/js/ui.js"></script>
         <script src="assets/js/theme.js"></script>
         <script src="assets/js/animations.js"></script>
+        <script src="assets/js/charts.js"></script>
         <script src="assets/js/app.js"></script>
     </body>
 
