@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ===== Meta Tags ===== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Modern IT Helpdesk System Dashboard" />
+    <meta name="author" content="Your Name" />
+
+    <title>IT Helpdesk System | Dashboard</title>
+
+    <!-- ===== Favicon ===== -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+
+    <!-- ===== Google Fonts (Inter — modern SaaS font) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- ===== Bootstrap 5 CSS ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- ===== Font Awesome (icons) ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- ===== AOS Animation CSS ===== -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- ===== Our Own CSS (order matters!) ===== -->
+    <link rel="stylesheet" href="assets/css/themes.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+
+<body>
+
+    <body>
+        <!-- ========== APP CONTAINER (ครอบทั้งหมด) ========== -->
+        <div class="app-container">
+
+            <!-- ========== SIDEBAR (เมนูซ้าย) ========== -->
+            <aside class="sidebar" id="sidebar">
+                <!-- aside = element สำหรับเนื้อหารอง เช่น menu, sidebar (semantic HTML) -->
+
+                <!-- ----- Logo Section ----- -->
+                <div class="sidebar__logo">
+                    <!-- BEM naming: block__element เพื่อให้ class ชื่อไม่ชนกัน -->
+                    <div class="sidebar__logo-icon">
+                        <i class="fa-solid fa-headset"></i>
+                        <!-- Font Awesome icon — headset = สื่อถึง support team -->
+                    </div>
+                    <span class="sidebar__logo-text">HelpDesk Pro</span>
+                </div>
+
+                <!-- ----- Navigation Menu ----- -->
+                <nav class="sidebar__nav">
+                    <!-- nav = element สำหรับ navigation (semantic) -->
+
+                    <div class="sidebar__nav-label">Main</div>
+                    <!-- หัวข้อกลุ่มเมนู -->
+
+                    <a href="index.html" class="sidebar__nav-item sidebar__nav-item--active">
+                        <!-- --active = modifier ใน BEM บอกว่าเมนูนี้กำลังถูกเลือก -->
+                        <i class="fa-solid fa-grip"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+                    <a href="tickets.html" class="sidebar__nav-item">
+                        <i class="fa-solid fa-ticket"></i>
+                        <span>Tickets</span>
+                        <span class="sidebar__nav-badge">12</span>
+                        <!-- badge ตัวเลข แสดง ticket ใหม่ -->
+                    </a>
+
+                    <a href="inventory.html" class="sidebar__nav-item">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span>Inventory</span>
+                    </a>
+
+                    <a href="analytics.html" class="sidebar__nav-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+
+                    <div class="sidebar__nav-label">Account</div>
+
+                    <a href="#" class="sidebar__nav-item">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+
+                    <a href="#" class="sidebar__nav-item">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+
+                <!-- ----- Sidebar Footer (กล่องโปรไฟล์ล่าง) ----- -->
+                <div class="sidebar__footer">
+                    <div class="sidebar__user">
+                        <div class="sidebar__avatar">JD</div>
+                        <!-- avatar แบบใช้ตัวอักษรย่อ (initial) ดู modern -->
+                        <div class="sidebar__user-info">
+                            <div class="sidebar__user-name">John Doe</div>
+                            <div class="sidebar__user-role">IT Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ========== MAIN AREA (ขวาของ sidebar) ========== -->
+            <div class="main-area">
+
+                <!-- ----- Topbar ----- -->
+                <header class="topbar">
+                    <!-- header = element สำหรับส่วนหัว (semantic) -->
+
+                    <!-- ปุ่ม toggle sidebar (จะแสดงบนมือถือ) -->
+                    <button class="topbar__toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                        <!-- aria-label = บอก screen reader ว่าปุ่มนี้ทำอะไร (accessibility) -->
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <!-- Search box -->
+                    <div class="topbar__search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search tickets, devices, users..."
+                            class="topbar__search-input" />
+                        <kbd class="topbar__search-kbd">⌘K</kbd>
+                        <!-- kbd = element สำหรับแสดง keyboard key (เห็นในเว็บ modern เยอะ) -->
+                    </div>
+
+                    <!-- Right actions -->
+                    <div class="topbar__actions">
+
+                        <!-- Theme toggle (Step 9 จะใส่ logic) -->
+                        <button class="topbar__icon-btn" id="themeToggle" aria-label="Toggle theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+
+                        <!-- Notification bell -->
+                        <button class="topbar__icon-btn topbar__icon-btn--has-badge" aria-label="Notifications">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="topbar__notification-dot"></span>
+                            <!-- จุดแดงเล็กๆ บอกว่ามีแจ้งเตือนใหม่ -->
+                        </button>
+
+                        <!-- Profile -->
+                        <div class="topbar__profile">
+                            <div class="topbar__avatar">JD</div>
+                            <i class="fa-solid fa-chevron-down topbar__profile-arrow"></i>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- ----- Main Content (เนื้อหาของแต่ละหน้า) ----- -->
+                <main class="content">
+                    <!-- main = element สำหรับเนื้อหาหลัก (มีแค่ 1 ตัวต่อหน้า — semantic) -->
+
+                    <div class="content__header">
+                        <div>
+                            <h1>Dashboard</h1>
+                            <p>Welcome back, John 👋 Here's what's happening today.</p>
+                        </div>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>New Ticket</span>
+                        </button>
+                    </div>
+
+                    <!-- ========== STAT CARDS GRID ========== -->
+                    <section class="stats-grid">
+                        <!-- section = semantic element สำหรับกลุ่มเนื้อหา -->
+
+                        <!-- ----- Card 1: Total Tickets ----- -->
+                        <div class="stat-card stat-card--primary" data-aos="fade-up" data-aos-delay="0">
+                            <!-- data-aos = attribute สำหรับ AOS library, ทำให้ card fade-up ตอนโผล่ -->
+                            <!-- data-aos-delay = หน่วงเวลา 0ms (ใบแรก) -->
+
+                            <div class="stat-card__icon">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+
+                            <div class="stat-card__body">
+                                <div class="stat-card__label">Total Tickets</div>
+
+                                <div class="stat-card__value" data-counter="1247">0</div>
+                                <!-- data-counter = ค่าเป้าหมาย, ตอนเริ่มแสดง 0 แล้ว JS จะค่อยๆ นับขึ้น -->
+
+                                <div class="stat-card__trend stat-card__trend--up">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    <span>+12.5%</span>
+                                    <span class="stat-card__trend-label">vs last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ----- Card 2: Open Tickets ----- -->
+                        <div class="stat-card stat-card--warning" data-aos="fade-up" data-aos-delay="100">
+                            <div class="stat-card__icon">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                            </div>
+
+                            <div class="stat-card__body">
+                                <div class="stat-card__label">Open Tickets</div>
+                                <div class="stat-card__value" data-counter="284">0</div>
+                                <div class="stat-card__trend stat-card__trend--down">
+                                    <i class="fa-solid fa-arrow-trend-down"></i>
+                                    <span>-3.2%</span>
+                                    <span class="stat-card__trend-label">vs last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ----- Card 3: Resolved ----- -->
+                        <div class="stat-card stat-card--success" data-aos="fade-up" data-aos-delay="200">
+                            <div class="stat-card__icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+
+                            <div class="stat-card__body">
+                                <div class="stat-card__label">Resolved Today</div>
+                                <div class="stat-card__value" data-counter="58">0</div>
+                                <div class="stat-card__trend stat-card__trend--up">
+                                    <i class="fa-solid fa-arrow-trend-up"></i>
+                                    <span>+18.7%</span>
+                                    <span class="stat-card__trend-label">vs yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ----- Card 4: Avg Response Time ----- -->
+                        <div class="stat-card stat-card--info" data-aos="fade-up" data-aos-delay="300">
+                            <div class="stat-card__icon">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+
+                            <div class="stat-card__body">
+                                <div class="stat-card__label">Avg Response Time</div>
+
+                                <div class="stat-card__value">
+                                    <span data-counter="2.4">0</span><span class="stat-card__unit">h</span>
+                                    <!-- ใส่หน่วย "h" (ชั่วโมง) แยกออกมาเพื่อให้นับแค่ตัวเลข -->
+                                </div>
+
+                                <div class="stat-card__trend stat-card__trend--up">
+                                    <i class="fa-solid fa-arrow-trend-down"></i>
+                                    <!-- เวลาตอบลดลง = ดี เลยใช้ icon down แต่ class up (เขียว) -->
+                                    <span>-24%</span>
+                                    <span class="stat-card__trend-label">faster</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========== SECONDARY ROW (จะใส่ chart ใน Step 4) ========== -->
+                    <section class="content__placeholder" style="margin-top: 24px;">
+                        <p>📊 Charts will appear here in Step 4</p>
+                    </section>
+
+                </main>
+            </div>
+            <!-- /.main-area -->
+
+        </div>
+        <!-- /.app-container -->
+
+        <!-- ===== Sidebar overlay สำหรับมือถือ (คลิกแล้วปิด sidebar) ===== -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- (script tags อยู่ด้านล่างเหมือนเดิม — ไม่ต้องแก้) -->
+
+        <!-- ===== jQuery (ต้องโหลดก่อน Bootstrap JS) ===== -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <!-- ===== Bootstrap 5 JS Bundle (รวม Popper) ===== -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- ===== GSAP (TweenMax modern = gsap.min.js) ===== -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+        <!-- ===== Chart.js ===== -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+        <!-- ===== AOS Animation JS ===== -->
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+        <!-- ===== Our Own JS (order matters!) ===== -->
+        <script src="assets/js/config.js"></script>
+        <script src="assets/js/api.js"></script>
+        <script src="assets/js/ui.js"></script>
+        <script src="assets/js/theme.js"></script>
+        <script src="assets/js/animations.js"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
+
+</html>

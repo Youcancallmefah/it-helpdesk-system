@@ -1,0 +1,26 @@
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editor =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== Node (ถ้ามี npm install ในอนาคต) =====
+node_modules/
+package-lock.json
+
+# ===== Logs =====
+*.log
+npm-debug.log*
+
+# ===== Environment (ห้าม commit รหัสผ่าน!) =====
+.env
+.env.local
+
+# ===== Build output =====
+dist/
+build/

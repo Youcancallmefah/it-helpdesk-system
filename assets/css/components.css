@@ -1,0 +1,242 @@
+/* ========================================
+   BUTTONS
+======================================== */
+
+.btn {
+    display: inline-flex;
+    /* flex แต่ไม่ขึ้นบรรทัดใหม่ */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* ช่องว่างระหว่าง icon กับ text */
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    /* text ไม่ตัดบรรทัด */
+    border: 1px solid transparent;
+}
+
+.btn:active {
+    transform: scale(0.97);
+    /* ปุ่มยุบเล็กตอนคลิก — feedback ที่ดี */
+}
+
+/* ----- Primary Button (ปุ่มหลัก) ----- */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    box-shadow: var(--shadow-glow);
+    /* hover แล้วมีเงาเรืองแสง */
+    transform: translateY(-1px);
+    /* ยกขึ้น 1px — depth illusion */
+}
+
+/* ----- Secondary Button ----- */
+.btn-secondary {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-muted);
+}
+
+/* ----- Ghost Button (โปร่ง) ----- */
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* ----- Button Sizes ----- */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 14px 24px;
+    font-size: 1rem;
+}
+/* ========================================
+   STATS GRID - แถวของ stat cards
+======================================== */
+
+.stats-grid {
+  display: grid;                                                    /* ใช้ CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));      /* auto responsive */
+  /* auto-fit  = ใส่ column ให้พอดีพื้นที่
+     minmax    = แต่ละ column ต้อง ≥240px และขยายเต็มได้ (1fr)
+     ผลลัพธ์: จอใหญ่ = 4 cards, จอกลาง = 2 cards, มือถือ = 1 card อัตโนมัติ */
+  gap: 20px;                                                        /* ระยะห่างระหว่าง card */
+  margin-bottom: 28px;
+}
+
+/* ========================================
+   STAT CARD - การ์ดสถิติแต่ละใบ
+======================================== */
+
+.stat-card {
+  position: relative;                       /* เพื่อให้ ::before ลอยทับได้ */
+  background: var(--bg-surface);            /* พื้นหลังขาว */
+  border-radius: var(--radius-lg);          /* มุมโค้ง 16px */
+  padding: 24px;
+  box-shadow: var(--shadow-sm);             /* เงาเล็กตอนปกติ */
+  transition: all var(--transition-base);   /* animate ทุกอย่างที่เปลี่ยน 250ms */
+  overflow: hidden;                         /* ครอบ ::before ไม่ให้ทะลุออก */
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+}
+
+/* ----- Hover Lift Effect (สำคัญ! premium feel) ----- */
+.stat-card:hover {
+  transform: translateY(-4px);              /* ยกขึ้น 4px */
+  box-shadow: var(--shadow-lg);             /* เงาใหญ่ขึ้น */
+  border-color: transparent;                /* ขอบหายไป (ถูกแทนที่ด้วยเงา) */
+}
+
+/* ----- Top accent bar (แถบสีบนหัว card) ----- */
+.stat-card::before {
+  content: '';                              /* element หลอก */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;                              /* แถบสูง 4px ด้านบนสุด */
+  background: linear-gradient(90deg, var(--card-color-start), var(--card-color-end));
+  /* gradient จากซ้ายไปขวา ใช้ตัวแปรท้องถิ่นของ card */
+  opacity: 0;                               /* ซ่อนตอนแรก */
+  transition: opacity var(--transition-base);
+}
+
+.stat-card:hover::before {
+  opacity: 1;                               /* hover แล้วโผล่ */
+}
+
+/* ----- Card Variants (แต่ละสี ใช้ตัวแปรท้องถิ่น) ----- */
+.stat-card--primary {
+  --card-color-start: #6366f1;              /* ตัวแปรท้องถิ่นของ card ใบนี้ */
+  --card-color-end: #8b5cf6;                /* ::before จะไปอ่านค่านี้ */
+}
+
+.stat-card--warning {
+  --card-color-start: #f59e0b;
+  --card-color-end: #ef4444;
+}
+
+.stat-card--success {
+  --card-color-start: #10b981;
+  --card-color-end: #06b6d4;
+}
+
+.stat-card--info {
+  --card-color-start: #3b82f6;
+  --card-color-end: #8b5cf6;
+}
+
+/* ----- Icon Container (กรอบ icon gradient) ----- */
+.stat-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--card-color-start), var(--card-color-end));
+  /* gradient ใช้ตัวแปรท้องถิ่นของ card variant */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 16px -4px var(--card-color-start);            /* เงาสีเดียวกับ gradient — premium */
+  transition: transform var(--transition-base);
+}
+
+.stat-card:hover .stat-card__icon {
+  transform: scale(1.1) rotate(-5deg);                            /* hover card แล้ว icon ขยาย+เอียง */
+}
+
+/* ----- Card Text ----- */
+.stat-card__label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.stat-card__value {
+  font-size: 2rem;                          /* 32px ตัวเลขใหญ่เป็นพระเอก */
+  font-weight: 800;                         /* extra bold */
+  color: var(--text-primary);
+  line-height: 1;                           /* แน่น ไม่หย่อน */
+  margin-bottom: 12px;
+  font-variant-numeric: tabular-nums;       /* ตัวเลขกว้างเท่ากัน — ไม่กระตุกตอนนับ! */
+  display: flex;                            /* เพื่อให้ unit อยู่ในแถวเดียวกัน */
+  align-items: baseline;                    /* จัดให้ baseline ตรงกัน */
+  gap: 2px;
+}
+
+.stat-card__unit {
+  font-size: 1.2rem;                        /* unit เล็กกว่าเลข */
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ----- Trend Indicator (ลูกศรขึ้น/ลง + เปอร์เซ็น) ----- */
+.stat-card__trend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stat-card__trend--up {
+  color: var(--color-success);              /* ขึ้น = เขียว */
+}
+
+.stat-card__trend--down {
+  color: var(--color-danger);               /* ลง = แดง */
+}
+
+.stat-card__trend i {
+  font-size: 11px;
+}
+
+.stat-card__trend-label {
+  color: var(--text-muted);                 /* "vs last month" สีซีด */
+  font-weight: 400;
+}
+
+/* ----- Decorative blob (วงกลมจางๆ ที่มุม) ----- */
+.stat-card::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  bottom: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--card-color-start), var(--card-color-end));
+  opacity: 0.05;                            /* โปร่งมาก แค่จางๆ ให้ดูมีดีไซน์ */
+  transition: opacity var(--transition-base);
+  pointer-events: none;                     /* ไม่ให้ blok hover */
+}
+
+.stat-card:hover::after {
+  opacity: 0.1;                             /* hover แล้วชัดขึ้นนิดหน่อย */
+}

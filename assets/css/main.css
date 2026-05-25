@@ -1,0 +1,146 @@
+/* ========================================
+   GLOBAL RESET & BASE STYLES
+   ตั้งค่าพื้นฐานของทุก element
+======================================== */
+
+*,
+*::before,
+*::after {
+    /* * = ทุก element, ::before/::after = pseudo elements */
+    margin: 0;
+    /* ลบ margin default ของ browser */
+    padding: 0;
+    /* ลบ padding default */
+    box-sizing: border-box;
+    /* ทำให้ width = ขนาดจริงรวม padding+border */
+}
+
+html {
+    scroll-behavior: smooth;
+    /* ทำให้ scroll นุ่ม (เช่นเวลาคลิก anchor) */
+    font-size: 16px;
+    /* ตั้งขนาด font หลัก = 1rem = 16px */
+}
+
+body {
+    font-family: var(--font-sans);
+    /* ใช้ font จากตัวแปร (Inter) */
+    background-color: var(--bg-body);
+    /* สีพื้นหลังจาก theme */
+    color: var(--text-primary);
+    /* สีตัวอักษรหลัก */
+    line-height: 1.5;
+    /* ระยะห่างระหว่างบรรทัด 1.5 เท่า อ่านสบาย */
+    -webkit-font-smoothing: antialiased;
+    /* ทำให้ font ดูคมชัดบน Mac/iOS */
+    min-height: 100vh;
+    /* ความสูงอย่างน้อย = ความสูงหน้าจอ */
+    overflow-x: hidden;
+    /* ห้าม scroll แนวนอน — กัน layout พังตอน responsive */
+}
+
+/* ===== Typography (รูปแบบตัวอักษร) ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    /* หัวข้อหนาทุกระดับ */
+    line-height: 1.2;
+    /* หัวข้อให้แน่นกว่าตัวเนื้อ */
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 1.875rem;
+}
+
+/* 30px */
+h2 {
+    font-size: 1.5rem;
+}
+
+/* 24px */
+h3 {
+    font-size: 1.25rem;
+}
+
+/* 20px */
+h4 {
+    font-size: 1.125rem;
+}
+
+/* 18px */
+h5 {
+    font-size: 1rem;
+}
+
+/* 16px */
+h6 {
+    font-size: 0.875rem;
+}
+
+/* 14px */
+
+p {
+    color: var(--text-secondary);
+    /* paragraph สีรอง */
+}
+
+a {
+    color: var(--color-primary);
+    /* ลิงก์สีหลัก */
+    text-decoration: none;
+    /* ลบเส้นใต้ default */
+    transition: color var(--transition-fast);
+    /* เปลี่ยนสีนุ่มๆ ตอน hover */
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+    /* hover เข้มขึ้น */
+}
+
+button {
+    font-family: inherit;
+    /* ใช้ font เดียวกับ parent — กัน button ใช้ Times New Roman */
+    cursor: pointer;
+    /* mouse pointer เปลี่ยนเป็นนิ้วชี้ */
+    border: none;
+    /* ลบขอบ default ของ button */
+    background: none;
+    /* ลบพื้นหลังเทาๆ default */
+}
+
+img {
+    max-width: 100%;
+    /* รูปไม่ล้น container — สำคัญสำหรับ responsive */
+    display: block;
+    /* ลบช่องว่างใต้รูปที่ browser ใส่ default */
+}
+
+/* ===== Custom Scrollbar (scrollbar สวยๆ ดู modern) ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    /* ความกว้าง scrollbar */
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* รางใส */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    /* แกน scrollbar สีเทาอ่อน */
+    border-radius: var(--radius-full);
+    /* มุมโค้งเต็มที่ */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+    /* hover เข้มขึ้น */
+}

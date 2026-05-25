@@ -1,0 +1,514 @@
+/* ========================================
+   APP LAYOUT - โครงสร้างหลักของแอป
+======================================== */
+
+.app-container {
+    display: flex;
+    /* ใช้ flexbox จัด sidebar+main ในแนวนอน */
+    min-height: 100vh;
+    /* สูงเต็มจอ */
+}
+
+/* ========================================
+   SIDEBAR
+======================================== */
+
+.sidebar {
+    width: var(--sidebar-width);
+    /* ความกว้างจากตัวแปร (260px) */
+    background: var(--bg-surface);
+    /* พื้นหลังขาว */
+    border-right: 1px solid var(--border-color);
+    /* เส้นขอบขวา */
+    display: flex;
+    /* flex แนวตั้ง */
+    flex-direction: column;
+    /* เรียงลูกจากบนลงล่าง */
+    position: fixed;
+    /* lock อยู่กับที่ ไม่ scroll ตาม */
+    top: 0;
+    /* ติดบน */
+    left: 0;
+    /* ติดซ้าย */
+    height: 100vh;
+    /* สูงเต็มจอ */
+    z-index: 100;
+    /* ลอยอยู่ชั้นบน — สำคัญตอนเปิดบนมือถือ */
+    transition: transform var(--transition-slow);
+    /* animation ตอนเปิด/ปิด */
+}
+
+/* ----- Logo ----- */
+.sidebar__logo {
+    display: flex;
+    /* icon + text เรียงแนวนอน */
+    align-items: center;
+    /* จัดให้ตรงกลางแนวตั้ง */
+    gap: 12px;
+    /* ช่องว่างระหว่าง icon กับ text */
+    padding: 20px 24px;
+    /* บน-ล่าง 20px, ซ้าย-ขวา 24px */
+    border-bottom: 1px solid var(--border-color);
+    height: var(--topbar-height);
+    /* สูงเท่า topbar เพื่อให้ตรงกัน */
+}
+
+.sidebar__logo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    /* gradient ม่วงเอียง 135 องศา */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* จัด icon ให้อยู่กลางทั้ง 2 แกน */
+    color: white;
+    font-size: 18px;
+    box-shadow: var(--shadow-glow);
+    /* เงาเรืองแสง — premium feel */
+}
+
+.sidebar__logo-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+/* ----- Nav Menu ----- */
+.sidebar__nav {
+    flex: 1;
+    /* ดันให้ขยายเต็มพื้นที่ที่เหลือ ดัน footer ลงล่าง */
+    padding: 16px 12px;
+    overflow-y: auto;
+    /* ถ้าเมนูเยอะ ให้ scroll ได้ */
+}
+
+.sidebar__nav-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    /* ตัวพิมพ์ใหญ่ทั้งหมด */
+    letter-spacing: 0.05em;
+    /* เพิ่มระยะระหว่างตัวอักษร — modern look */
+    color: var(--text-muted);
+    padding: 12px 12px 8px;
+}
+
+.sidebar__nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    /* hover นุ่มๆ */
+    position: relative;
+    /* เพื่อใช้กับ badge ที่ absolute */
+    margin-bottom: 2px;
+}
+
+.sidebar__nav-item:hover {
+    background: var(--bg-hover);
+    /* hover เปลี่ยนพื้นหลังเทาอ่อน */
+    color: var(--text-primary);
+}
+
+.sidebar__nav-item i {
+    width: 20px;
+    /* fix ขนาด icon ให้เท่ากันทุกตัว — จัดเรียงสวย */
+    text-align: center;
+    font-size: 16px;
+}
+
+.sidebar__nav-item--active {
+    background: linear-gradient(135deg,
+            rgba(99, 102, 241, 0.1),
+            /* สีหลักโปร่ง 10% */
+            rgba(139, 92, 246, 0.1));
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.sidebar__nav-item--active::before {
+    /* ::before = สร้าง element หลอกก่อน content */
+    content: '';
+    /* ต้องมี content แม้จะว่าง */
+    position: absolute;
+    left: -12px;
+    /* ออกไปทางซ้ายเล็กน้อย */
+    top: 50%;
+    transform: translateY(-50%);
+    /* จัดกลางแนวตั้ง */
+    width: 4px;
+    height: 24px;
+    background: var(--color-primary);
+    border-radius: 0 4px 4px 0;
+    /* มน 3 มุม */
+}
+
+.sidebar__nav-badge {
+    margin-left: auto;
+    /* ดันไปขวาสุดของแถว */
+    background: var(--color-danger);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    min-width: 22px;
+    text-align: center;
+}
+
+/* ----- Sidebar Footer ----- */
+.sidebar__footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar__user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+}
+
+.sidebar__user:hover {
+    background: var(--bg-hover);
+    cursor: pointer;
+}
+
+.sidebar__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    /* วงกลม */
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.sidebar__user-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.sidebar__user-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ========================================
+   MAIN AREA (ทุกอย่างยกเว้น sidebar)
+======================================== */
+
+.main-area {
+    flex: 1;
+    /* ขยายเต็มพื้นที่ที่เหลือ */
+    margin-left: var(--sidebar-width);
+    /* เว้นที่ให้ sidebar (เพราะ sidebar เป็น fixed) */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    /* fix bug flexbox ที่ทำให้ overflow */
+}
+
+/* ========================================
+   TOPBAR
+======================================== */
+
+.topbar {
+    height: var(--topbar-height);
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    position: sticky;
+    /* ติดบนตอน scroll */
+    top: 0;
+    z-index: 50;
+    /* ลอยอยู่ใต้ sidebar */
+    backdrop-filter: blur(10px);
+    /* glassmorphism — เบลอสิ่งที่อยู่ข้างหลัง */
+}
+
+.topbar__toggle {
+    display: none;
+    /* ซ่อนบน desktop — แสดงเฉพาะ mobile */
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+.topbar__toggle:hover {
+    background: var(--bg-hover);
+}
+
+/* ----- Search ----- */
+.topbar__search {
+    flex: 1;
+    /* ขยายเต็ม */
+    max-width: 400px;
+    /* แต่ไม่เกิน 400px */
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.topbar__search i {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
+    font-size: 14px;
+    pointer-events: none;
+    /* คลิกทะลุ icon ไปโดน input */
+}
+
+.topbar__search-input {
+    width: 100%;
+    height: 42px;
+    background: var(--bg-body);
+    border: 1px solid transparent;
+    /* ขอบใส — จะเปลี่ยนตอน focus */
+    border-radius: var(--radius-md);
+    padding: 0 60px 0 40px;
+    /* เผื่อที่ icon ซ้าย + kbd ขวา */
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+    font-family: inherit;
+}
+
+.topbar__search-input:focus {
+    outline: none;
+    /* ลบเส้นน้ำเงิน default ของ browser */
+    background: var(--bg-surface);
+    border-color: var(--color-primary);
+    /* ขอบเป็นสีหลักตอน focus */
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    /* glow รอบๆ — modern */
+}
+
+.topbar__search-kbd {
+    position: absolute;
+    right: 12px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+}
+
+/* ----- Topbar Actions ----- */
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    /* ดันไปขวาสุด */
+}
+
+.topbar__icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.topbar__icon-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.topbar__notification-dot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-danger);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-surface);
+    /* ขอบสีพื้นหลัง — ให้ดูเหมือนเจาะออกมา */
+}
+
+.topbar__profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px 4px 4px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.topbar__profile:hover {
+    background: var(--bg-hover);
+}
+
+.topbar__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.topbar__profile-arrow {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+/* ========================================
+   CONTENT AREA
+======================================== */
+
+.content {
+    flex: 1;
+    padding: 28px;
+    overflow-y: auto;
+    /* scroll ได้ถ้าเนื้อหายาว */
+}
+
+.content__header {
+    display: flex;
+    justify-content: space-between;
+    /* หัวข้อซ้าย ปุ่มขวา */
+    align-items: flex-start;
+    margin-bottom: 28px;
+    gap: 16px;
+    flex-wrap: wrap;
+    /* wrap ลงบรรทัดใหม่ถ้าจอแคบ */
+}
+
+.content__header h1 {
+    margin-bottom: 4px;
+}
+
+.content__header p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.content__placeholder {
+    background: var(--bg-surface);
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 80px 20px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* ========================================
+   SIDEBAR OVERLAY (สำหรับ mobile)
+======================================== */
+
+.sidebar-overlay {
+    display: none;
+    /* ซ่อนตลอด ยกเว้นตอนเปิด sidebar บนมือถือ */
+    position: fixed;
+    inset: 0;
+    /* = top:0 right:0 bottom:0 left:0 */
+    background: rgba(0, 0, 0, 0.5);
+    /* ดำโปร่ง 50% */
+    z-index: 99;
+    /* ใต้ sidebar แต่อยู่บน content */
+    backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.is-active {
+    display: block;
+    /* แสดงเมื่อ sidebar เปิดบนมือถือ */
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   เขียนแบบ Mobile-First ก็จริง แต่ sidebar ปกติคือ desktop-first
+   เพราะ dashboard ส่วนใหญ่ใช้บน desktop
+======================================== */
+
+/* ===== Tablet (≤ 992px) ===== */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+        /* ซ่อนออกไปทางซ้าย */
+    }
+
+    .sidebar.is-open {
+        transform: translateX(0);
+        /* เปิด: เลื่อนกลับมา */
+        box-shadow: var(--shadow-lg);
+        /* เงาเพิ่ม เพื่อให้ดูลอย */
+    }
+
+    .main-area {
+        margin-left: 0;
+        /* ไม่ต้องเว้นที่ให้ sidebar อีก */
+    }
+
+    .topbar__toggle {
+        display: flex;
+        /* แสดงปุ่ม menu */
+    }
+}
+
+/* ===== Phone (≤ 768px) ===== */
+@media (max-width: 768px) {
+    .content {
+        padding: 20px 16px;
+        /* ลด padding บนมือถือ */
+    }
+
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .topbar__search-kbd {
+        display: none; /* ซ่อน ⌘K บนมือถือ */
+    }
+
+    .topbar__profile span,
+    .topbar__profile-arrow {
+        display: none;    /* แสดงแค่ avatar */
+    }
+}
+
+/* ===== Small Phone (≤ 576px) ===== */
+@media (max-width: 576px) {
+    .topbar__search {
+        display: none;
+        /* ซ่อน search บนจอเล็กมาก */
+    }
+
+    .content__header {
+        flex-direction: column;
+        /* หัวข้อกับปุ่ม เรียงลงล่างกัน */
+        align-items: stretch;
+    }
+}

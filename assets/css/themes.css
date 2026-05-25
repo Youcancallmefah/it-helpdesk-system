@@ -1,0 +1,91 @@
+/* ========================================
+   THEME TOKENS - ระบบสีของทั้งระบบ
+   ใช้ CSS Variables เพื่อเปลี่ยน theme ได้ง่าย
+======================================== */
+
+:root {
+    /* :root = element สูงสุดของ HTML (= <html>) ตัวแปรในนี้ใช้ได้ทั้งหน้า */
+
+    /* ===== Brand Colors (สีหลักของแบรนด์) ===== */
+    --color-primary: #6366f1;
+    /* สีหลัก ม่วงน้ำเงิน Indigo */
+    --color-primary-hover: #4f46e5;
+    /* สีหลักเข้มขึ้น สำหรับ hover */
+    --color-secondary: #8b5cf6;
+    /* สีรอง สำหรับ gradient */
+    --color-accent: #06b6d4;
+    /* สี accent สำหรับ highlight */
+
+    /* ===== Status Colors (สีบอกสถานะ ใช้ใน badge/alert) ===== */
+    --color-success: #10b981;
+    /* เขียว = สำเร็จ/เปิด */
+    --color-warning: #f59e0b;
+    /* เหลือง = รอ/เตือน */
+    --color-danger: #ef4444;
+    /* แดง = error/urgent */
+    --color-info: #3b82f6;
+    /* ฟ้า = ข้อมูล */
+
+    /* ===== Background Colors (สีพื้นหลัง — Light Mode) ===== */
+    --bg-body: #f8fafc;
+    /* พื้นหลังหลักของหน้า สีเทาอ่อนมาก */
+    --bg-surface: #ffffff;
+    /* พื้นของ card, sidebar — สีขาว */
+    --bg-elevated: #ffffff;
+    /* พื้น modal/dropdown ที่ลอยอยู่ */
+    --bg-hover: #f1f5f9;
+    /* สีเมื่อ hover ทับ */
+
+    /* ===== Text Colors (สีตัวอักษร) ===== */
+    --text-primary: #0f172a;
+    /* ตัวอักษรหลัก ดำเข้ม */
+    --text-secondary: #475569;
+    /* ตัวอักษรรอง เทากลาง */
+    --text-muted: #94a3b8;
+    /* ตัวอักษรซีด สำหรับ caption */
+    --text-on-primary: #ffffff;
+    /* ตัวอักษรบนพื้นสีหลัก = ขาว */
+
+    /* ===== Borders & Shadows (เส้นขอบ + เงา) ===== */
+    --border-color: #e2e8f0;
+    /* สีเส้นขอบ เทาอ่อน */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    /* เงาเล็ก */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+    /* เงากลาง */
+    --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    /* เงาใหญ่ ใช้กับ card */
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    /* เงาเรืองแสง สำหรับ accent */
+
+    /* ===== Layout Sizes (ขนาดของ layout) ===== */
+    --sidebar-width: 260px;
+    /* ความกว้าง sidebar ตอนเปิด */
+    --sidebar-collapsed: 80px;
+    /* ความกว้าง sidebar ตอนหด */
+    --topbar-height: 70px;
+    /* ความสูง topbar */
+
+    /* ===== Border Radius (ความโค้งของมุม) ===== */
+    --radius-sm: 6px;
+    /* มุมเล็ก ใช้กับ badge */
+    --radius-md: 10px;
+    /* มุมกลาง ใช้กับ button, input */
+    --radius-lg: 16px;
+    /* มุมใหญ่ ใช้กับ card */
+    --radius-full: 9999px;
+    /* วงกลม สำหรับ avatar */
+
+    /* ===== Transitions (จังหวะ animation) ===== */
+    --transition-fast: 150ms ease;
+    /* เร็ว สำหรับ hover ปุ่ม */
+    --transition-base: 250ms ease;
+    /* ปกติ สำหรับ transition ทั่วไป */
+    --transition-slow: 400ms ease;
+    /* ช้า สำหรับ modal, sidebar */
+
+    /* ===== Fonts ===== */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* -apple-system คือ font ของ Mac, BlinkMacSystemFont คือของ Chrome on Mac
+     ถ้าโหลด Inter ไม่ทัน จะ fallback ไปใช้ font ระบบ — ทำให้เว็บไม่กระตุก */
+}
