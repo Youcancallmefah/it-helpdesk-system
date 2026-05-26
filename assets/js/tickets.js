@@ -35,30 +35,19 @@
      โหลดข้อมูลจาก JSON file
   ───────────────────────────────────────── */
   function loadTickets() {
-    $.getJSON('assets/data/mock-tickets.json')    /* jQuery โหลด JSON */
+    showTableSkeleton();                            /* แสดง skeleton ก่อนทันที */
+
+    $.getJSON('assets/data/mock-tickets.json')      /* ดึงข้อมูลจาก JSON file */
       .done(function (data) {
-        state.tickets = data;                     /* เก็บข้อมูลดิบ */
-        applyFilters();                           /* กรองและ render */
-        updateStatBar();                          /* อัพเดทตัวเลข stat */
-        animateTableIn();                         /* GSAP เปิดตาราง */
+        state.tickets = data;                       /* เก็บข้อมูล */
+        applyFilters();
+        updateStatBar();
+        animateTableIn();                           /* skeleton หายไป + ตารางโผล่ */
       })
       .fail(function () {
-        /* ถ้าโหลดไม่ได้ แสดง error state */
-        showError();
+        showError();                                /* ถ้า JSON โหลดไม่ได้ */
       });
-
-    showTableSkeleton();                      /* แสดง skeleton ก่อน */
-
-    /* setTimeout จำลองการรอ API 1.2 วินาที
-       ใน production จะเป็น real API call แทน */
-    setTimeout(function () {
-      state.tickets = MOCK_TICKETS;
-      applyFilters();
-      updateStatBar();
-      animateTableIn();
-    }, 1200);
   }
-
   /* Skeleton rows ขณะรอตาราง */
   function showTableSkeleton() {
     /* แสดง 6 แถว skeleton */
