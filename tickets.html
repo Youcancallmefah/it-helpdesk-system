@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IT Helpdesk System | Tickets</title>
+
+  <!-- ===== Google Fonts ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- ===== Libraries CSS ===== -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- ===== Our CSS ===== -->
+  <link rel="stylesheet" href="assets/css/themes.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+
+<body>
+<div class="app-container">
+
+  <!-- ========== SIDEBAR (copy จาก index.html) ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <div class="sidebar__logo-icon">
+        <i class="fa-solid fa-headset"></i>
+      </div>
+      <span class="sidebar__logo-text">HelpDesk Pro</span>
+    </div>
+
+    <nav class="sidebar__nav">
+      <div class="sidebar__nav-label">Main</div>
+
+      <a href="index.html" class="sidebar__nav-item">
+        <i class="fa-solid fa-grip"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="tickets.html" class="sidebar__nav-item sidebar__nav-item--active">
+        <!-- active เปลี่ยนมาที่ tickets แล้ว -->
+        <i class="fa-solid fa-ticket"></i>
+        <span>Tickets</span>
+        <span class="sidebar__nav-badge">12</span>
+      </a>
+
+      <a href="inventory.html" class="sidebar__nav-item">
+        <i class="fa-solid fa-laptop"></i>
+        <span>Inventory</span>
+      </a>
+
+      <a href="analytics.html" class="sidebar__nav-item">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Analytics</span>
+      </a>
+
+      <div class="sidebar__nav-label">Account</div>
+
+      <a href="#" class="sidebar__nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+
+      <a href="#" class="sidebar__nav-item">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar__user">
+        <div class="sidebar__avatar">JD</div>
+        <div class="sidebar__user-info">
+          <div class="sidebar__user-name">John Doe</div>
+          <div class="sidebar__user-role">IT Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN AREA ========== -->
+  <div class="main-area">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="topbar__toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="topbar__search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search tickets, devices, users..." class="topbar__search-input" />
+        <kbd class="topbar__search-kbd">⌘K</kbd>
+      </div>
+      <div class="topbar__actions">
+        <button class="topbar__icon-btn" id="themeToggle" aria-label="Toggle theme">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="topbar__icon-btn topbar__icon-btn--has-badge" aria-label="Notifications">
+          <i class="fa-solid fa-bell"></i>
+          <span class="topbar__notification-dot"></span>
+        </button>
+        <div class="topbar__profile">
+          <div class="topbar__avatar">JD</div>
+          <i class="fa-solid fa-chevron-down topbar__profile-arrow"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========== CONTENT ========== -->
+    <main class="content">
+
+      <!-- Page Header -->
+      <div class="content__header">
+        <div>
+          <h1>Ticket Management</h1>
+          <p>Track, manage and resolve all IT support requests.</p>
+        </div>
+        <button class="btn btn-primary" id="newTicketBtn">
+          <i class="fa-solid fa-plus"></i>
+          <span>New Ticket</span>
+        </button>
+      </div>
+
+      <!-- ===== Mini Stats Bar ===== -->
+      <div class="ticket-stats" data-aos="fade-up">
+        <div class="ticket-stat">
+          <span class="ticket-stat__value" id="statTotal">0</span>
+          <span class="ticket-stat__label">Total</span>
+        </div>
+        <div class="ticket-stat ticket-stat--open">
+          <span class="ticket-stat__value" id="statOpen">0</span>
+          <span class="ticket-stat__label">Open</span>
+        </div>
+        <div class="ticket-stat ticket-stat--progress">
+          <span class="ticket-stat__value" id="statProgress">0</span>
+          <span class="ticket-stat__label">In Progress</span>
+        </div>
+        <div class="ticket-stat ticket-stat--resolved">
+          <span class="ticket-stat__value" id="statResolved">0</span>
+          <span class="ticket-stat__label">Resolved</span>
+        </div>
+        <div class="ticket-stat ticket-stat--closed">
+          <span class="ticket-stat__value" id="statClosed">0</span>
+          <span class="ticket-stat__label">Closed</span>
+        </div>
+      </div>
+
+      <!-- ===== Filter Bar ===== -->
+      <div class="filter-bar" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Search -->
+        <div class="filter-bar__search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="ticketSearch"
+            placeholder="Search by ID, subject, requester..."
+            class="filter-bar__input"
+          />
+        </div>
+
+        <!-- Filters -->
+        <div class="filter-bar__filters">
+
+          <select id="statusFilter" class="filter-bar__select">
+            <option value="all">All Status</option>
+            <option value="open">Open</option>
+            <option value="in-progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select>
+
+          <select id="priorityFilter" class="filter-bar__select">
+            <option value="all">All Priority</option>
+            <option value="critical">Critical</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+
+          <select id="categoryFilter" class="filter-bar__select">
+            <option value="all">All Category</option>
+            <option value="hardware">Hardware</option>
+            <option value="software">Software</option>
+            <option value="network">Network</option>
+            <option value="security">Security</option>
+            <option value="other">Other</option>
+          </select>
+
+          <!-- Reset filters button -->
+          <button class="btn btn-ghost btn-sm" id="resetFilters">
+            <i class="fa-solid fa-rotate-left"></i>
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== Ticket Table Card ===== -->
+      <div class="table-card" data-aos="fade-up" data-aos-delay="200">
+
+        <!-- Table Header: count + bulk actions -->
+        <div class="table-card__header">
+          <span class="table-card__count" id="resultCount">
+            Showing <strong>0</strong> tickets
+          </span>
+          <!-- Bulk action bar (จะโชว์เมื่อเลือก checkbox) -->
+          <div class="bulk-actions" id="bulkActions" style="display:none;">
+            <span class="bulk-actions__count" id="bulkCount">0 selected</span>
+            <button class="btn btn-ghost btn-sm">
+              <i class="fa-solid fa-user-check"></i> Assign
+            </button>
+            <button class="btn btn-ghost btn-sm">
+              <i class="fa-solid fa-circle-check"></i> Resolve
+            </button>
+            <button class="btn btn-ghost btn-sm" style="color: var(--color-danger)">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+
+        <!-- Table Wrapper (scroll บนมือถือ) -->
+        <div class="table-wrapper">
+          <table class="ticket-table" id="ticketTable">
+            <thead>
+              <tr>
+                <th class="th-check">
+                  <input type="checkbox" id="selectAll" class="table-checkbox" />
+                </th>
+                <th class="sortable" data-col="id">
+                  Ticket ID
+                  <i class="fa-solid fa-sort sort-icon"></i>
+                </th>
+                <th class="sortable" data-col="subject">
+                  Subject
+                  <i class="fa-solid fa-sort sort-icon"></i>
+                </th>
+                <th>Requester</th>
+                <th class="sortable" data-col="priority">
+                  Priority
+                  <i class="fa-solid fa-sort sort-icon"></i>
+                </th>
+                <th class="sortable" data-col="status">
+                  Status
+                  <i class="fa-solid fa-sort sort-icon"></i>
+                </th>
+                <th>Category</th>
+                <th class="sortable" data-col="date">
+                  Date
+                  <i class="fa-solid fa-sort sort-icon"></i>
+                </th>
+                <th class="th-action">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ticketTableBody">
+              <!-- JS จะ inject แถวข้อมูลที่นี่ -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State (แสดงเมื่อไม่มีผลลัพธ์) -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+          <div class="empty-state__icon">
+            <i class="fa-solid fa-ticket-simple"></i>
+          </div>
+          <h3>No tickets found</h3>
+          <p>Try adjusting your search or filter criteria.</p>
+          <button class="btn btn-secondary btn-sm" id="clearSearch">
+            Clear filters
+          </button>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-bar" id="paginationBar">
+          <span class="pagination-bar__info" id="paginationInfo"></span>
+          <div class="pagination-bar__controls" id="paginationControls"></div>
+        </div>
+
+      </div>
+      <!-- /.table-card -->
+
+    </main>
+  </div>
+  <!-- /.main-area -->
+
+</div>
+<!-- /.app-container -->
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ===== Libraries JS ===== -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- ===== Our JS ===== -->
+<script src="assets/js/config.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/animations.js"></script>
+<script src="assets/js/tickets.js"></script>   <!-- page-specific logic -->
+<script src="assets/js/app.js"></script>
+</body>
+</html>

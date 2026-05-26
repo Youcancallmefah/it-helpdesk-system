@@ -1,0 +1,17 @@
+[
+  { "id": "TKT-1089", "subject": "Computer won't start after Windows update", "requester": "Sarah Johnson", "avatar": "SJ", "priority": "critical", "status": "open", "category": "Hardware", "date": "2025-05-24", "assignee": "Mike Lee" },
+  { "id": "TKT-1088", "subject": "Outlook keeps crashing on startup", "requester": "David Chen", "avatar": "DC", "priority": "high", "status": "in-progress", "category": "Software", "date": "2025-05-24", "assignee": "Anna Smith" },
+  { "id": "TKT-1087", "subject": "VPN connection drops every 30 minutes", "requester": "Emma Wilson", "avatar": "EW", "priority": "high", "status": "resolved", "category": "Network", "date": "2025-05-23", "assignee": "Tom Brown" },
+  { "id": "TKT-1086", "subject": "Printer on 3rd floor not responding", "requester": "James Rodriguez", "avatar": "JR", "priority": "medium", "status": "open", "category": "Hardware", "date": "2025-05-23", "assignee": "Unassigned" },
+  { "id": "TKT-1085", "subject": "Laptop screen flickering randomly", "requester": "Lisa Park", "avatar": "LP", "priority": "medium", "status": "in-progress", "category": "Hardware", "date": "2025-05-22", "assignee": "Mike Lee" },
+  { "id": "TKT-1084", "subject": "Unable to access shared drive Z:", "requester": "Robert Kim", "avatar": "RK", "priority": "high", "status": "open", "category": "Network", "date": "2025-05-22", "assignee": "Unassigned" },
+  { "id": "TKT-1083", "subject": "Password reset request - locked out", "requester": "Maria Santos", "avatar": "MS", "priority": "critical", "status": "resolved", "category": "Security", "date": "2025-05-21", "assignee": "Anna Smith" },
+  { "id": "TKT-1082", "subject": "Microsoft Teams audio not working", "requester": "Kevin Nguyen", "avatar": "KN", "priority": "low", "status": "resolved", "category": "Software", "date": "2025-05-21", "assignee": "Tom Brown" },
+  { "id": "TKT-1081", "subject": "Request new monitor for workstation", "requester": "Amy Thompson", "avatar": "AT", "priority": "low", "status": "closed", "category": "Hardware", "date": "2025-05-20", "assignee": "Mike Lee" },
+  { "id": "TKT-1080", "subject": "Suspicious email phishing attempt", "requester": "Daniel White", "avatar": "DW", "priority": "critical", "status": "in-progress", "category": "Security", "date": "2025-05-20", "assignee": "Anna Smith" },
+  { "id": "TKT-1079", "subject": "Software license expired - Adobe CC", "requester": "Jennifer Lee", "avatar": "JL", "priority": "medium", "status": "open", "category": "Software", "date": "2025-05-19", "assignee": "Unassigned" },
+  { "id": "TKT-1078", "subject": "WiFi signal weak in conference room B", "requester": "Chris Martin", "avatar": "CM", "priority": "medium", "status": "closed", "category": "Network", "date": "2025-05-19", "assignee": "Tom Brown" },
+  { "id": "TKT-1077", "subject": "New employee setup - workstation", "requester": "Patricia Davis", "avatar": "PD", "priority": "high", "status": "in-progress", "category": "Hardware", "date": "2025-05-18", "assignee": "Mike Lee" },
+  { "id": "TKT-1076", "subject": "Excel macros not running after update", "requester": "Steven Garcia", "avatar": "SG", "priority": "low", "status": "resolved", "category": "Software", "date": "2025-05-18", "assignee": "Anna Smith" },
+  { "id": "TKT-1075", "subject": "Firewall blocking company portal", "requester": "Nancy Martinez", "avatar": "NM", "priority": "critical", "status": "resolved", "category": "Security", "date": "2025-05-17", "assignee": "Tom Brown" }
+]

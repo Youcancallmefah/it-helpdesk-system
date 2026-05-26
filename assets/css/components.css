@@ -3,87 +3,91 @@
 ======================================== */
 
 .btn {
-    display: inline-flex;
-    /* flex แต่ไม่ขึ้นบรรทัดใหม่ */
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    /* ช่องว่างระหว่าง icon กับ text */
-    padding: 10px 18px;
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    white-space: nowrap;
-    /* text ไม่ตัดบรรทัด */
-    border: 1px solid transparent;
+  display: inline-flex;
+  /* flex แต่ไม่ขึ้นบรรทัดใหม่ */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* ช่องว่างระหว่าง icon กับ text */
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  /* text ไม่ตัดบรรทัด */
+  border: 1px solid transparent;
 }
 
 .btn:active {
-    transform: scale(0.97);
-    /* ปุ่มยุบเล็กตอนคลิก — feedback ที่ดี */
+  transform: scale(0.97);
+  /* ปุ่มยุบเล็กตอนคลิก — feedback ที่ดี */
 }
 
 /* ----- Primary Button (ปุ่มหลัก) ----- */
 .btn-primary {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-    color: white;
-    box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-    box-shadow: var(--shadow-glow);
-    /* hover แล้วมีเงาเรืองแสง */
-    transform: translateY(-1px);
-    /* ยกขึ้น 1px — depth illusion */
+  box-shadow: var(--shadow-glow);
+  /* hover แล้วมีเงาเรืองแสง */
+  transform: translateY(-1px);
+  /* ยกขึ้น 1px — depth illusion */
 }
 
 /* ----- Secondary Button ----- */
 .btn-secondary {
-    background: var(--bg-surface);
-    color: var(--text-primary);
-    border-color: var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 .btn-secondary:hover {
-    background: var(--bg-hover);
-    border-color: var(--text-muted);
+  background: var(--bg-hover);
+  border-color: var(--text-muted);
 }
 
 /* ----- Ghost Button (โปร่ง) ----- */
 .btn-ghost {
-    background: transparent;
-    color: var(--text-secondary);
+  background: transparent;
+  color: var(--text-secondary);
 }
 
 .btn-ghost:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
+  background: var(--bg-hover);
+  color: var(--text-primary);
 }
 
 /* ----- Button Sizes ----- */
 .btn-sm {
-    padding: 6px 12px;
-    font-size: 0.8rem;
+  padding: 6px 12px;
+  font-size: 0.8rem;
 }
 
 .btn-lg {
-    padding: 14px 24px;
-    font-size: 1rem;
+  padding: 14px 24px;
+  font-size: 1rem;
 }
+
 /* ========================================
    STATS GRID - แถวของ stat cards
 ======================================== */
 
 .stats-grid {
-  display: grid;                                                    /* ใช้ CSS Grid */
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));      /* auto responsive */
+  display: grid;
+  /* ใช้ CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* auto responsive */
   /* auto-fit  = ใส่ column ให้พอดีพื้นที่
      minmax    = แต่ละ column ต้อง ≥240px และขยายเต็มได้ (1fr)
      ผลลัพธ์: จอใหญ่ = 4 cards, จอกลาง = 2 cards, มือถือ = 1 card อัตโนมัติ */
-  gap: 20px;                                                        /* ระยะห่างระหว่าง card */
+  gap: 20px;
+  /* ระยะห่างระหว่าง card */
   margin-bottom: 28px;
 }
 
@@ -92,46 +96,61 @@
 ======================================== */
 
 .stat-card {
-  position: relative;                       /* เพื่อให้ ::before ลอยทับได้ */
-  background: var(--bg-surface);            /* พื้นหลังขาว */
-  border-radius: var(--radius-lg);          /* มุมโค้ง 16px */
+  position: relative;
+  /* เพื่อให้ ::before ลอยทับได้ */
+  background: var(--bg-surface);
+  /* พื้นหลังขาว */
+  border-radius: var(--radius-lg);
+  /* มุมโค้ง 16px */
   padding: 24px;
-  box-shadow: var(--shadow-sm);             /* เงาเล็กตอนปกติ */
-  transition: all var(--transition-base);   /* animate ทุกอย่างที่เปลี่ยน 250ms */
-  overflow: hidden;                         /* ครอบ ::before ไม่ให้ทะลุออก */
+  box-shadow: var(--shadow-sm);
+  /* เงาเล็กตอนปกติ */
+  transition: all var(--transition-base);
+  /* animate ทุกอย่างที่เปลี่ยน 250ms */
+  overflow: hidden;
+  /* ครอบ ::before ไม่ให้ทะลุออก */
   border: 1px solid var(--border-color);
   cursor: pointer;
 }
 
 /* ----- Hover Lift Effect (สำคัญ! premium feel) ----- */
 .stat-card:hover {
-  transform: translateY(-4px);              /* ยกขึ้น 4px */
-  box-shadow: var(--shadow-lg);             /* เงาใหญ่ขึ้น */
-  border-color: transparent;                /* ขอบหายไป (ถูกแทนที่ด้วยเงา) */
+  transform: translateY(-4px);
+  /* ยกขึ้น 4px */
+  box-shadow: var(--shadow-lg);
+  /* เงาใหญ่ขึ้น */
+  border-color: transparent;
+  /* ขอบหายไป (ถูกแทนที่ด้วยเงา) */
 }
 
 /* ----- Top accent bar (แถบสีบนหัว card) ----- */
 .stat-card::before {
-  content: '';                              /* element หลอก */
+  content: '';
+  /* element หลอก */
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;                              /* แถบสูง 4px ด้านบนสุด */
+  height: 4px;
+  /* แถบสูง 4px ด้านบนสุด */
   background: linear-gradient(90deg, var(--card-color-start), var(--card-color-end));
   /* gradient จากซ้ายไปขวา ใช้ตัวแปรท้องถิ่นของ card */
-  opacity: 0;                               /* ซ่อนตอนแรก */
+  opacity: 0;
+  /* ซ่อนตอนแรก */
   transition: opacity var(--transition-base);
 }
 
 .stat-card:hover::before {
-  opacity: 1;                               /* hover แล้วโผล่ */
+  opacity: 1;
+  /* hover แล้วโผล่ */
 }
 
 /* ----- Card Variants (แต่ละสี ใช้ตัวแปรท้องถิ่น) ----- */
 .stat-card--primary {
-  --card-color-start: #6366f1;              /* ตัวแปรท้องถิ่นของ card ใบนี้ */
-  --card-color-end: #8b5cf6;                /* ::before จะไปอ่านค่านี้ */
+  --card-color-start: #6366f1;
+  /* ตัวแปรท้องถิ่นของ card ใบนี้ */
+  --card-color-end: #8b5cf6;
+  /* ::before จะไปอ่านค่านี้ */
 }
 
 .stat-card--warning {
@@ -162,12 +181,14 @@
   color: white;
   font-size: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 8px 16px -4px var(--card-color-start);            /* เงาสีเดียวกับ gradient — premium */
+  box-shadow: 0 8px 16px -4px var(--card-color-start);
+  /* เงาสีเดียวกับ gradient — premium */
   transition: transform var(--transition-base);
 }
 
 .stat-card:hover .stat-card__icon {
-  transform: scale(1.1) rotate(-5deg);                            /* hover card แล้ว icon ขยาย+เอียง */
+  transform: scale(1.1) rotate(-5deg);
+  /* hover card แล้ว icon ขยาย+เอียง */
 }
 
 /* ----- Card Text ----- */
@@ -179,19 +200,26 @@
 }
 
 .stat-card__value {
-  font-size: 2rem;                          /* 32px ตัวเลขใหญ่เป็นพระเอก */
-  font-weight: 800;                         /* extra bold */
+  font-size: 2rem;
+  /* 32px ตัวเลขใหญ่เป็นพระเอก */
+  font-weight: 800;
+  /* extra bold */
   color: var(--text-primary);
-  line-height: 1;                           /* แน่น ไม่หย่อน */
+  line-height: 1;
+  /* แน่น ไม่หย่อน */
   margin-bottom: 12px;
-  font-variant-numeric: tabular-nums;       /* ตัวเลขกว้างเท่ากัน — ไม่กระตุกตอนนับ! */
-  display: flex;                            /* เพื่อให้ unit อยู่ในแถวเดียวกัน */
-  align-items: baseline;                    /* จัดให้ baseline ตรงกัน */
+  font-variant-numeric: tabular-nums;
+  /* ตัวเลขกว้างเท่ากัน — ไม่กระตุกตอนนับ! */
+  display: flex;
+  /* เพื่อให้ unit อยู่ในแถวเดียวกัน */
+  align-items: baseline;
+  /* จัดให้ baseline ตรงกัน */
   gap: 2px;
 }
 
 .stat-card__unit {
-  font-size: 1.2rem;                        /* unit เล็กกว่าเลข */
+  font-size: 1.2rem;
+  /* unit เล็กกว่าเลข */
   font-weight: 600;
   color: var(--text-muted);
 }
@@ -206,11 +234,13 @@
 }
 
 .stat-card__trend--up {
-  color: var(--color-success);              /* ขึ้น = เขียว */
+  color: var(--color-success);
+  /* ขึ้น = เขียว */
 }
 
 .stat-card__trend--down {
-  color: var(--color-danger);               /* ลง = แดง */
+  color: var(--color-danger);
+  /* ลง = แดง */
 }
 
 .stat-card__trend i {
@@ -218,7 +248,8 @@
 }
 
 .stat-card__trend-label {
-  color: var(--text-muted);                 /* "vs last month" สีซีด */
+  color: var(--text-muted);
+  /* "vs last month" สีซีด */
   font-weight: 400;
 }
 
@@ -232,33 +263,41 @@
   height: 140px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--card-color-start), var(--card-color-end));
-  opacity: 0.05;                            /* โปร่งมาก แค่จางๆ ให้ดูมีดีไซน์ */
+  opacity: 0.05;
+  /* โปร่งมาก แค่จางๆ ให้ดูมีดีไซน์ */
   transition: opacity var(--transition-base);
-  pointer-events: none;                     /* ไม่ให้ blok hover */
+  pointer-events: none;
+  /* ไม่ให้ blok hover */
 }
 
 .stat-card:hover::after {
-  opacity: 0.1;                             /* hover แล้วชัดขึ้นนิดหน่อย */
+  opacity: 0.1;
+  /* hover แล้วชัดขึ้นนิดหน่อย */
 }
+
 /* ========================================
    CHARTS GRID LAYOUT
 ======================================== */
 
 .charts-grid {
   display: grid;
-  grid-template-columns: 1fr 340px;             /* ซ้ายขยายเต็ม, ขวาคงที่ 340px */
+  grid-template-columns: 1fr 340px;
+  /* ซ้ายขยายเต็ม, ขวาคงที่ 340px */
   gap: 20px;
 }
 
 .charts-grid--secondary {
-  grid-template-columns: 1fr 1fr;               /* แบ่งครึ่งเท่ากัน */
+  grid-template-columns: 1fr 1fr;
+  /* แบ่งครึ่งเท่ากัน */
 }
 
 /* Tablet: stack เป็น 1 column */
 @media (max-width: 1100px) {
+
   .charts-grid,
   .charts-grid--secondary {
-    grid-template-columns: 1fr;                 /* ซ้อนกันแนวตั้ง */
+    grid-template-columns: 1fr;
+    /* ซ้อนกันแนวตั้ง */
   }
 }
 
@@ -276,7 +315,8 @@
 }
 
 .chart-card:hover {
-  box-shadow: var(--shadow-md);               /* hover แค่เงา ไม่ lift เพราะมี chart ข้างใน */
+  box-shadow: var(--shadow-md);
+  /* hover แค่เงา ไม่ lift เพราะมี chart ข้างใน */
 }
 
 .chart-card__header {
@@ -307,35 +347,44 @@
 
 .chart-card__body--center {
   display: flex;
-  justify-content: center;                    /* doughnut จัดกลาง */
+  justify-content: center;
+  /* doughnut จัดกลาง */
 }
 
 /* กำหนด height ที่ wrapper ไม่ใช่ canvas โดยตรง */
 .chart-card--large .chart-card__body {
-  height: 240px;            /* บังคับความสูง line chart พอดี ไม่มีที่ว่าง */
+  height: 240px;
+  /* บังคับความสูง line chart พอดี ไม่มีที่ว่าง */
 }
 
 .charts-grid--secondary .chart-card:first-child .chart-card__body {
-  height: 220px;            /* bar chart */
+  height: 220px;
+  /* bar chart */
 }
 
 /* canvas fill ตาม wrapper เอง */
 #trendChart,
 #deptChart {
-  display: block;           /* ลบช่องว่างใต้ canvas ที่ browser ใส่ default */
+  display: block;
+  /* ลบช่องว่างใต้ canvas ที่ browser ใส่ default */
 }
 
 /* wrapper สี่เหลี่ยมจัตุรัสคงที่ */
 .doughnut-wrapper {
-  position: relative;       /* Chart.js ต้องการ position relative ของ container */
-  width: 200px;             /* กำหนดที่ wrapper ไม่ใช่ canvas โดยตรง */
-  height: 200px;            /* สี่เหลี่ยมจัตุรัส = วงกลมสมบูรณ์ */
-  flex-shrink: 0;           /* ไม่ให้ยุบตัวใน flex container */
+  position: relative;
+  /* Chart.js ต้องการ position relative ของ container */
+  width: 200px;
+  /* กำหนดที่ wrapper ไม่ใช่ canvas โดยตรง */
+  height: 200px;
+  /* สี่เหลี่ยมจัตุรัส = วงกลมสมบูรณ์ */
+  flex-shrink: 0;
+  /* ไม่ให้ยุบตัวใน flex container */
 }
 
 /* ปล่อยให้ canvas fill ตาม wrapper เอง */
 #statusChart {
-  display: block;           /* ลบช่องว่างใต้ canvas */
+  display: block;
+  /* ลบช่องว่างใต้ canvas */
 }
 
 /* ========================================
@@ -352,7 +401,8 @@
 
 .chart-tab {
   padding: 5px 12px;
-  border-radius: calc(var(--radius-md) - 2px);  /* เล็กกว่า container นิดหน่อย */
+  border-radius: calc(var(--radius-md) - 2px);
+  /* เล็กกว่า container นิดหน่อย */
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-muted);
@@ -365,7 +415,8 @@
 }
 
 .chart-tab--active {
-  background: var(--bg-surface);              /* ขาวบน gray = selected */
+  background: var(--bg-surface);
+  /* ขาวบน gray = selected */
   color: var(--color-primary);
   box-shadow: var(--shadow-sm);
 }
@@ -400,8 +451,10 @@
 .chart-legend__dot {
   width: 10px;
   height: 10px;
-  border-radius: 3px;                         /* สี่เหลี่ยมมนเล็กๆ ดู modern กว่าวงกลม */
-  flex-shrink: 0;                             /* ไม่ให้ dot ยุบเมื่อ flex */
+  border-radius: 3px;
+  /* สี่เหลี่ยมมนเล็กๆ ดู modern กว่าวงกลม */
+  flex-shrink: 0;
+  /* ไม่ให้ dot ยุบเมื่อ flex */
 }
 
 .chart-legend__value {
@@ -423,7 +476,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(16, 185, 129, 0.1);        /* เขียวโปร่ง 10% */
+  background: rgba(16, 185, 129, 0.1);
+  /* เขียวโปร่ง 10% */
   color: var(--color-success);
   font-size: 0.75rem;
   font-weight: 600;
@@ -436,12 +490,22 @@
   height: 7px;
   background: var(--color-success);
   border-radius: 50%;
-  animation: pulse-dot 2s infinite;           /* กระพริบ! */
+  animation: pulse-dot 2s infinite;
+  /* กระพริบ! */
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(0.7); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
 }
 
 /* ========================================
@@ -454,20 +518,21 @@
   gap: 0;
   max-height: 270px;
   overflow-y: auto;
- 
+
 }
 
 .activity-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding:  12px 4px 12px 4px;
+  padding: 12px 4px 12px 4px;
   border-bottom: 1px solid var(--border-color);
   transition: background var(--transition-fast);
 }
 
 .activity-item:last-child {
-  border-bottom: none;                        /* item สุดท้ายไม่มีเส้น */
+  border-bottom: none;
+  /* item สุดท้ายไม่มีเส้น */
 }
 
 .activity-item__icon {
@@ -478,17 +543,34 @@
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  flex-shrink: 0;                             /* icon ไม่ยุบ */
+  flex-shrink: 0;
+  /* icon ไม่ยุบ */
 }
 
-.activity-item__icon--create  { background: rgba(99, 102, 241, 0.1); color: var(--color-primary); }
-.activity-item__icon--resolve { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
-.activity-item__icon--update  { background: rgba(245, 158, 11, 0.1); color: var(--color-warning); }
-.activity-item__icon--assign  { background: rgba(59, 130, 246, 0.1); color: var(--color-info); }
+.activity-item__icon--create {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+}
+
+.activity-item__icon--resolve {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.activity-item__icon--update {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.activity-item__icon--assign {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-info);
+}
 
 .activity-item__body {
   flex: 1;
-  min-width: 0;                               /* fix ข้อความล้น */
+  min-width: 0;
+  /* fix ข้อความล้น */
 }
 
 .activity-item__text {
@@ -497,7 +579,8 @@
   line-height: 1.4;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;                    /* ตัดด้วย ... ถ้ายาวเกิน */
+  text-overflow: ellipsis;
+  /* ตัดด้วย ... ถ้ายาวเกิน */
 }
 
 .activity-item__text strong {
@@ -509,4 +592,547 @@
   font-size: 0.73rem;
   color: var(--text-muted);
   margin-top: 3px;
+}
+
+/* ========================================
+   TICKET STATS BAR
+======================================== */
+
+.ticket-stats {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  /* wrap บนมือถือ */
+}
+
+.ticket-stat {
+  flex: 1;
+  /* แบ่งพื้นที่เท่าๆ กัน */
+  min-width: 80px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  text-align: center;
+  transition: all var(--transition-fast);
+  cursor: default;
+}
+
+.ticket-stat:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.ticket-stat__value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+  /* ตัวเลขความกว้างเท่ากัน */
+}
+
+.ticket-stat__label {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* accent color ด้านซ้ายของแต่ละ stat */
+.ticket-stat--open {
+  border-left: 3px solid var(--color-primary);
+}
+
+.ticket-stat--progress {
+  border-left: 3px solid var(--color-warning);
+}
+
+.ticket-stat--resolved {
+  border-left: 3px solid var(--color-success);
+}
+
+.ticket-stat--closed {
+  border-left: 3px solid var(--text-muted);
+}
+
+/* ========================================
+   FILTER BAR
+======================================== */
+
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-bar__search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  /* ไม่แคบกว่า 200px */
+}
+
+.filter-bar__search i {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.filter-bar__input {
+  width: 100%;
+  height: 42px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0 16px 0 40px;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+.filter-bar__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.filter-bar__filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-bar__select {
+  height: 42px;
+  padding: 0 32px 0 12px;
+  /* เผื่อ arrow ขวา */
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  appearance: none;
+  /* ลบ arrow default ของ browser */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  /* วาง custom arrow ขวา */
+}
+
+.filter-bar__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* ========================================
+   TABLE CARD
+======================================== */
+
+.table-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  /* ครอบ header/footer */
+}
+
+.table-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.table-card__count {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.table-card__count strong {
+  color: var(--text-primary);
+}
+
+/* ========================================
+   TABLE WRAPPER (horizontal scroll)
+======================================== */
+
+.table-wrapper {
+  overflow-x: auto;
+  /* scroll แนวนอนบนมือถือ */
+  -webkit-overflow-scrolling: touch;
+  /* scroll smooth บน iOS */
+}
+
+/* ========================================
+   TICKET TABLE
+======================================== */
+
+.ticket-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* ลบช่องว่างระหว่าง cell */
+  min-width: 900px;
+  /* กว้างขั้นต่ำ ถ้าหน้าจอแคบ → scroll */
+  white-space: nowrap;
+  /* text ไม่ตัดบรรทัด */
+}
+
+.ticket-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-body);
+  border-bottom: 1px solid var(--border-color);
+  user-select: none;
+  /* ไม่ให้ select text ตอนคลิก sort */
+}
+
+.ticket-table thead th.sortable {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.ticket-table thead th.sortable:hover {
+  color: var(--color-primary);
+}
+
+.ticket-table thead th.sortable:hover .sort-icon {
+  color: var(--color-primary);
+}
+
+.sort-icon {
+  font-size: 10px;
+  margin-left: 4px;
+  opacity: 0.5;
+}
+
+th.sort-asc .sort-icon,
+th.sort-desc .sort-icon {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.th-check {
+  width: 48px;
+}
+
+.th-action {
+  width: 100px;
+  text-align: center;
+}
+
+/* ===== Table Rows ===== */
+.ticket-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.ticket-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ticket-table tbody tr:hover {
+  background: var(--bg-hover);
+  /* hover เปลี่ยนพื้นหลัง */
+}
+
+.ticket-table tbody tr.is-selected {
+  background: rgba(99, 102, 241, 0.05);
+  /* เลือกแล้ว สีม่วงอ่อน */
+}
+
+.ticket-table tbody td {
+  padding: 14px 16px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  vertical-align: middle;
+  /* จัดกลางแนวตั้ง */
+}
+
+/* ===== Ticket ID Column ===== */
+.ticket-id {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Subject Column ===== */
+.ticket-subject {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ===== Requester (Avatar + Name) ===== */
+.ticket-requester {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticket-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ticket-avatar--alt {
+  background: linear-gradient(135deg, var(--color-accent), var(--color-success));
+}
+
+/* ===== PRIORITY BADGE ===== */
+.priority-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.priority-badge i {
+  font-size: 9px;
+}
+
+.priority-badge--critical {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.priority-badge--high {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.priority-badge--medium {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.priority-badge--low {
+  background: rgba(148, 163, 184, 0.1);
+  color: #64748b;
+}
+
+/* ===== STATUS BADGE ===== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  /* pill shape */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge::before {
+  content: '';
+  /* จุดกลมเล็กๆ หน้า text */
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  /* สีเดียวกับ text */
+}
+
+.status-badge--open {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+}
+
+.status-badge--in-progress {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+.status-badge--resolved {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.status-badge--closed {
+  background: rgba(148, 163, 184, 0.1);
+  color: #64748b;
+}
+
+/* ===== Action Buttons ===== */
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.table-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  transition: all var(--transition-fast);
+}
+
+.table-action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.table-action-btn--danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+}
+
+/* ===== Checkbox ===== */
+.table-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+  /* สี checkbox เปลี่ยนตาม brand */
+}
+
+/* ===== Bulk Actions ===== */
+.bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+.bulk-actions__count {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* ========================================
+   EMPTY STATE
+======================================== */
+
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-state__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 24px;
+  color: var(--text-muted);
+}
+
+.empty-state h3 {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* ========================================
+   PAGINATION
+======================================== */
+
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-bar__info {
+  font-size: 0.83rem;
+  color: var(--text-muted);
+}
+
+.pagination-bar__controls {
+  display: flex;
+  gap: 4px;
+}
+
+.page-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.page-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.page-btn--active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

@@ -144,3 +144,11 @@ img {
     background: var(--text-muted);
     /* hover เข้มขึ้น */
 }
+/* Search highlight */
+mark {
+  background: rgba(99, 102, 241, 0.2);    /* highlight สีม่วงอ่อน */
+  color: var(--color-primary);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-weight: 600;
+}
