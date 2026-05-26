@@ -23,7 +23,7 @@
 
   /* ===== Priority/Status config (ลำดับสำหรับ sort) ===== */
   const PRIORITY_ORDER = { critical: 0, high: 1, medium: 2, low: 3 };
-  const STATUS_ORDER   = { open: 0, 'in-progress': 1, resolved: 2, closed: 3 };
+  const STATUS_ORDER = { open: 0, 'in-progress': 1, resolved: 2, closed: 3 };
 
   /* ===== Init ===== */
   $(document).ready(function () {
@@ -46,6 +46,35 @@
         /* ถ้าโหลดไม่ได้ แสดง error state */
         showError();
       });
+
+    showTableSkeleton();                      /* แสดง skeleton ก่อน */
+
+    /* setTimeout จำลองการรอ API 1.2 วินาที
+       ใน production จะเป็น real API call แทน */
+    setTimeout(function () {
+      state.tickets = MOCK_TICKETS;
+      applyFilters();
+      updateStatBar();
+      animateTableIn();
+    }, 1200);
+  }
+
+  /* Skeleton rows ขณะรอตาราง */
+  function showTableSkeleton() {
+    /* แสดง 6 แถว skeleton */
+    const rows = Array.from({ length: 6 }, () => `
+    <div class="skeleton-row">
+      <div class="skeleton skeleton-line" style="max-width:20px;height:16px;flex-shrink:0"></div>
+      <div class="skeleton skeleton-line" style="max-width:80px"></div>
+      <div class="skeleton skeleton-line" style="max-width:220px"></div>
+      <div class="skeleton skeleton-line" style="max-width:110px"></div>
+      <div class="skeleton skeleton-line" style="max-width:75px"></div>
+      <div class="skeleton skeleton-line" style="max-width:80px"></div>
+    </div>
+  `).join('');
+
+    /* ใส่ skeleton ในที่ที่ตาราง tbody จะอยู่ */
+    $('.table-wrapper').html(`<div id="skeletonRows">${rows}</div>`);
   }
 
   /* ─────────────────────────────────────────
@@ -85,11 +114,11 @@
 
     /* Reset filters */
     $('#resetFilters, #clearSearch').on('click', function () {
-      state.search   = '';
-      state.status   = 'all';
+      state.search = '';
+      state.status = 'all';
       state.priority = 'all';
       state.category = 'all';
-      state.page     = 1;
+      state.page = 1;
       /* reset UI */
       $('#ticketSearch').val('');
       $('#statusFilter, #priorityFilter, #categoryFilter').val('all');
@@ -203,7 +232,7 @@
      Render ตาราง
   ───────────────────────────────────────── */
   function renderTable() {
-    const $body  = $('#ticketTableBody');
+    const $body = $('#ticketTableBody');
     const $empty = $('#emptyState');
     const pageTickets = getPageTickets();         /* ticket ในหน้าปัจจุบัน */
 
@@ -276,7 +305,7 @@
   ───────────────────────────────────────── */
   function getPageTickets() {
     const start = (state.page - 1) * state.perPage;  /* index เริ่มต้น */
-    const end   = start + state.perPage;              /* index สุดท้าย */
+    const end = start + state.perPage;              /* index สุดท้าย */
     return state.filtered.slice(start, end);          /* ตัดเฉพาะ chunk นี้ */
   }
 
@@ -286,9 +315,9 @@
   function renderPriority(priority) {
     const icons = {
       critical: 'fa-circle-exclamation',
-      high:     'fa-arrow-up',
-      medium:   'fa-minus',
-      low:      'fa-arrow-down',
+      high: 'fa-arrow-up',
+      medium: 'fa-minus',
+      low: 'fa-arrow-down',
     };
     const icon = icons[priority] || 'fa-minus';
     return `
@@ -304,10 +333,10 @@
   ───────────────────────────────────────── */
   function renderStatus(status) {
     const labels = {
-      'open':        'Open',
+      'open': 'Open',
       'in-progress': 'In Progress',
-      'resolved':    'Resolved',
-      'closed':      'Closed',
+      'resolved': 'Resolved',
+      'closed': 'Closed',
     };
     return `
       <span class="status-badge status-badge--${status}">
@@ -345,9 +374,9 @@
   function renderPagination() {
     const total = state.filtered.length;
     const totalPages = Math.ceil(total / state.perPage);
-    const current    = state.page;
-    const start      = (current - 1) * state.perPage + 1;
-    const end        = Math.min(current * state.perPage, total);
+    const current = state.page;
+    const start = (current - 1) * state.perPage + 1;
+    const end = Math.min(current * state.perPage, total);
 
     $('#paginationInfo').text(`${start}–${end} of ${total} tickets`);
 
@@ -419,9 +448,33 @@
      GSAP: Table fade-in เมื่อโหลดเสร็จ
   ───────────────────────────────────────── */
   function animateTableIn() {
+    /* restore table HTML กลับมาก่อน */
+    if ($('#skeletonRows').length > 0) {
+      $('.table-wrapper').html(`
+      <table class="ticket-table" id="ticketTable">
+        <thead>
+          <tr>
+            <th class="th-check"><input type="checkbox" id="selectAll" class="table-checkbox" /></th>
+            <th class="sortable" data-col="id">Ticket ID <i class="fa-solid fa-sort sort-icon"></i></th>
+            <th class="sortable" data-col="subject">Subject <i class="fa-solid fa-sort sort-icon"></i></th>
+            <th>Requester</th>
+            <th class="sortable" data-col="priority">Priority <i class="fa-solid fa-sort sort-icon"></i></th>
+            <th class="sortable" data-col="status">Status <i class="fa-solid fa-sort sort-icon"></i></th>
+            <th>Category</th>
+            <th class="sortable" data-col="date">Date <i class="fa-solid fa-sort sort-icon"></i></th>
+            <th class="th-action">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="ticketTableBody"></tbody>
+      </table>
+    `);
+
+      renderTable();                          /* render ข้อมูลลง table ที่ restore มา */
+    }
+
     gsap.fromTo('.table-card',
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.2 }
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
     );
   }
 

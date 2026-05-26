@@ -1136,3 +1136,227 @@ th.sort-desc .sort-icon {
   opacity: 0.4;
   cursor: not-allowed;
 }
+/* ========================================
+   SKELETON LOADING
+   shimmer animation เหมือน Facebook/LinkedIn
+======================================== */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-hover) 25%,        /* เทาอ่อน */
+    var(--border-color) 50%,    /* เทากลาง (จุดสว่าง) */
+    var(--bg-hover) 75%         /* เทาอ่อนอีกครั้ง */
+  );
+  background-size: 200% 100%;   /* ทำให้ gradient กว้างกว่า element 2 เท่า */
+  animation: shimmer 1.5s infinite linear;  /* วิ่งซ้ำๆ */
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }  /* เริ่มจากขวา */
+  100% { background-position: -200% 0; } /* วิ่งไปซ้าย → ดูเหมือนแสงวิ่ง */
+}
+
+/* ----- Skeleton Shapes ----- */
+.skeleton-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);        /* วงกลม */
+  flex-shrink: 0;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-line--lg  { width: 80%; }
+.skeleton-line--md  { width: 60%; }
+.skeleton-line--sm  { width: 40%; }
+.skeleton-line--xs  { width: 25%; }
+
+/* ----- Skeleton Card Layout ----- */
+.skeleton-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.skeleton-lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ----- Skeleton Table Rows ----- */
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.skeleton-row .skeleton-line {
+  flex: 1;
+}
+
+.skeleton-row .skeleton-line:nth-child(1) { max-width: 80px;  }
+.skeleton-row .skeleton-line:nth-child(2) { max-width: 240px; }
+.skeleton-row .skeleton-line:nth-child(3) { max-width: 120px; }
+.skeleton-row .skeleton-line:nth-child(4) { max-width: 70px;  }
+.skeleton-row .skeleton-line:nth-child(5) { max-width: 80px;  }
+
+/* ========================================
+   ERROR STATE
+======================================== */
+
+.error-state {
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.error-state__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: rgba(239, 68, 68, 0.1);       /* แดงจาง */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--color-danger);
+}
+
+.error-state h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.error-state p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 300px;
+}
+
+/* ========================================
+   SUPPORT TEAM SECTION (Dashboard)
+======================================== */
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.section-header h2 {
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+.section-header p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ----- Team Grid ----- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* ----- Team Member Card ----- */
+.team-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.team-card__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  object-fit: cover;                        /* รูปไม่บิดเบี้ยว */
+  border: 2px solid var(--border-color);
+}
+
+.team-card__name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.team-card__dept {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: -6px;
+}
+
+.team-card__stats {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-top: 4px;
+  background: rgba(99, 102, 241, 0.08);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.team-card__count {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.team-card__label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* status dot บน avatar */
+.team-card__avatar-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.team-card__status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-surface);      /* ขอบสีพื้นทำให้ดูลอยออกมา */
+  background: var(--color-success);
+}
