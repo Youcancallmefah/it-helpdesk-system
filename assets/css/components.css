@@ -1360,3 +1360,307 @@ th.sort-desc .sort-icon {
   border: 2px solid var(--bg-surface);      /* ขอบสีพื้นทำให้ดูลอยออกมา */
   background: var(--color-success);
 }
+/* ========================================
+   NOTIFICATION BADGE (ตัวเลขบน bell)
+======================================== */
+
+.topbar__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 18px;
+  height: 18px;
+  background: var(--color-danger);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--bg-surface);       /* ขอบสีพื้น ทำให้ดูลอยออกมา */
+  animation: badge-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* cubic-bezier นี้ = เด้งเล็กน้อยตอนโผล่ */
+}
+
+@keyframes badge-pop {
+  from { transform: scale(0); }
+  to   { transform: scale(1); }
+}
+
+/* ========================================
+   TOAST NOTIFICATION
+======================================== */
+
+.toast-container {
+  position: fixed;                           /* ลอยอยู่บนทุกอย่าง */
+  top: 20px;
+  right: 20px;
+  z-index: 9999;                             /* สูงสุด */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;                      /* container ไม่ block click */
+  width: 340px;
+}
+
+.toast {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: all;                       /* แต่ toast แต่ละอันรับ click ได้ */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Progress bar ที่ฐาน toast (หมดเวลาแล้วหาย) */
+.toast::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.4;
+  animation: toast-progress var(--toast-duration, 4s) linear forwards;
+}
+
+@keyframes toast-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* ----- Toast Icon ----- */
+.toast__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ----- Toast Body ----- */
+.toast__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.toast__title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.toast__message {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ----- Toast Close Button ----- */
+.toast__close {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.toast__close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* ----- Toast Variants ----- */
+.toast--success {
+  border-left: 4px solid var(--color-success);
+  color: var(--color-success);
+}
+.toast--success .toast__icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.toast--danger {
+  border-left: 4px solid var(--color-danger);
+  color: var(--color-danger);
+}
+.toast--danger .toast__icon {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+}
+
+.toast--warning {
+  border-left: 4px solid var(--color-warning);
+  color: var(--color-warning);
+}
+.toast--warning .toast__icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.toast--info {
+  border-left: 4px solid var(--color-primary);
+  color: var(--color-primary);
+}
+.toast--info .toast__icon {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+}
+
+/* ========================================
+   NOTIFICATION PANEL
+======================================== */
+
+.notification-panel {
+  position: fixed;
+  top: var(--topbar-height);
+  right: 16px;
+  width: 360px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  overflow: hidden;
+  /* ซ่อนก่อน GSAP จะ animate เข้ามา */
+  opacity: 0;
+  transform: translateY(-10px) scale(0.97);
+  pointer-events: none;                      /* ปิดการคลิกตอนซ่อน */
+}
+
+.notification-panel.is-open {
+  pointer-events: all;
+}
+
+.notification-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.notification-panel__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.notification-panel__list {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.notification-panel__footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.notification-panel__view-all {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ----- Notification Item ----- */
+.notif-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.notif-item:last-child {
+  border-bottom: none;
+}
+
+.notif-item:hover {
+  background: var(--bg-hover);
+}
+
+.notif-item.is-unread {
+  background: rgba(99, 102, 241, 0.04);      /* พื้นม่วงอ่อนมากสำหรับยังไม่ได้อ่าน */
+}
+
+.notif-item.is-unread::before {
+  content: '';                               /* จุดน้ำเงินบอกว่ายังไม่อ่าน */
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.notif-item {
+  position: relative;
+}
+
+.notif-item__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.notif-item__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.notif-item__text {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.notif-item__text strong {
+  color: var(--text-primary);
+}
+
+.notif-item__time {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+
+/* ----- Notification Overlay ----- */
+.notification-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 199;                              /* ใต้ panel */
+}
+
+.notification-overlay.is-active {
+  display: block;
+}

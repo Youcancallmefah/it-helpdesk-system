@@ -11,15 +11,16 @@
 
     // ===== DOM Ready =====
     $(document).ready(function () {
-        // jQuery shorthand รอจนกว่า HTML จะโหลดเสร็จก่อนค่อยทำงาน
-        // ป้องกัน error ตอนพยายามจับ element ที่ยังไม่ render
-
         console.log('🚀 App initialized');
 
-        initSidebar();    // เรียกฟังก์ชันเปิด/ปิด sidebar
-        initAOS();        // เรียก animation library
-    });
+        initSidebar();
+        initAOS();
 
+        /* เริ่มระบบ notification (เฉพาะหน้า dashboard) */
+        if (typeof NotificationSystem !== 'undefined') {
+            NotificationSystem.init();
+        }
+    });
     /**
      * จัดการการเปิด/ปิด sidebar บนมือถือ
      */
