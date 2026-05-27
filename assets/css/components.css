@@ -1664,3 +1664,242 @@ th.sort-desc .sort-icon {
 .notification-overlay.is-active {
   display: block;
 }
+
+/* ========================================
+   TOOLTIP (Step 10)
+   CSS-only — ไม่ต้องใช้ library
+   ใส่ data-tooltip="ข้อความ" ที่ element ใดก็ได้
+======================================== */
+
+[data-tooltip] {
+  position: relative;             /* ให้ ::after วางตำแหน่งเทียบกับ element นี้ได้ */
+}
+
+/* ตัวกล่อง tooltip */
+[data-tooltip]::after {
+  content: attr(data-tooltip);    /* อ่านข้อความจาก attribute โดยตรง */
+  position: absolute;
+  bottom: calc(100% + 10px);      /* ลอยเหนือ element */
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);   /* กึ่งกลาง + เริ่มจากต่ำกว่านิดนึง */
+  background: var(--text-primary);
+  color: var(--bg-surface);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.73rem;
+  font-weight: 500;
+  white-space: nowrap;             /* ไม่ตัดบรรทัด */
+  opacity: 0;
+  pointer-events: none;            /* ไม่รับ mouse event */
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 9999;
+}
+
+/* ลูกศรชี้ลงใต้ tooltip */
+[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--text-primary);  /* สามเหลี่ยมชี้ลง */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+  z-index: 9999;
+}
+
+/* แสดงเมื่อ hover */
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);   /* เลื่อนขึ้นเล็กน้อย */
+}
+
+[data-tooltip]:hover::before {
+  opacity: 1;
+}
+
+/* ========================================
+   MODAL (Step 10)
+======================================== */
+
+/* ----- Backdrop (พื้นมืดด้านหลัง) ----- */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;                           /* inset: 0 = top/right/bottom/left ทั้งหมด 0 */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);         /* เบลอพื้นหลัง = modern UI pattern */
+  z-index: 900;
+}
+
+.modal-backdrop.is-open {
+  display: block;
+}
+
+/* ----- Modal Box ----- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);   /* วางกึ่งกลางหน้าจอ */
+  width: min(560px, calc(100vw - 32px));  /* responsive: ไม่เกิน 560px, บนมือถือเว้นขอบ 16px */
+  max-height: calc(100vh - 80px);     /* ไม่ล้นหน้าจอ */
+  overflow-y: auto;                   /* scroll ถ้า content ยาวเกิน */
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  z-index: 901;                       /* อยู่เหนือ backdrop */
+}
+
+.modal.is-open {
+  display: block;
+}
+
+/* ----- Header ----- */
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.modal__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.modal__title i {
+  color: var(--color-primary);        /* icon สีหลัก */
+}
+
+.modal__close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.modal__close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* ----- Body ----- */
+.modal__body {
+  padding: 24px;
+}
+
+/* ----- Footer ----- */
+.modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ========================================
+   FORM (ใช้ใน modal)
+======================================== */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* 2 column layout สำหรับ Priority + Category */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 480px) {
+  .form-row { grid-template-columns: 1fr; }   /* มือถือ → stack เป็น 1 column */
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.form-required {
+  color: var(--color-danger);   /* ดาวแดง * */
+}
+
+/* input, select, textarea ใช้ style เดียวกัน */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* error state — เปลี่ยนเส้นขอบเป็นแดง */
+.form-input.is-error,
+.form-textarea.is-error {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.10);
+}
+
+.form-textarea {
+  resize: vertical;          /* ให้ user ลากขยายแนวตั้งได้ */
+  min-height: 90px;
+}
+
+.form-select {
+  appearance: none;          /* ลบ arrow default ของ browser */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;       /* เผื่อ custom arrow */
+  cursor: pointer;
+}
+
+.form-error {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-danger);
+  margin-top: 4px;
+  min-height: 18px;           /* จอง space ไว้ ข้อความไม่กระโดดเมื่อ error โผล่ */
+}
+
+/* ป้องกัน scroll ใต้ modal เมื่อ modal เปิด */
+body.modal-open {
+  overflow: hidden;
+}

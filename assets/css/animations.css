@@ -16,3 +16,35 @@
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ========================================
+   RIPPLE EFFECT (Step 8)
+   คลื่นที่กระจายออกเมื่อคลิกปุ่ม
+======================================== */
+
+/* element ที่ถูกสร้างโดย initRipple() ใน animations.js */
+.ripple-effect {
+  position: absolute;          /* วางทับบน button */
+  border-radius: 50%;          /* วงกลม */
+  background: rgba(255, 255, 255, 0.35);  /* สีขาวโปร่งแสง */
+  transform: scale(0);         /* เริ่มจากจุดเล็กๆ */
+  animation: ripple-expand 0.6s linear forwards;
+  pointer-events: none;        /* ไม่รับ click (กัน infinite loop) */
+}
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(1);       /* ขยายออกเต็มขนาด (size ถูกกำหนดโดย JS) */
+    opacity: 0;                /* ค่อยๆ หาย */
+  }
+}
+
+/* ========================================
+   PAGE TRANSITION (Step 8)
+   ใช้ร่วมกับ initPageExit() ใน animations.js
+======================================== */
+
+/* .main-area ต้องมี position ที่รองรับ transform */
+.main-area {
+  will-change: opacity, transform;  /* บอก browser ล่วงหน้าว่าจะ animate property นี้ */
+}

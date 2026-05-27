@@ -89,3 +89,57 @@
     /* -apple-system คือ font ของ Mac, BlinkMacSystemFont คือของ Chrome on Mac
      ถ้าโหลด Inter ไม่ทัน จะ fallback ไปใช้ font ระบบ — ทำให้เว็บไม่กระตุก */
 }
+
+/* ========================================
+   DARK MODE TOKENS (Step 9)
+   เมื่อ <html data-theme="dark"> → ค่าตัวแปรเหล่านี้จะ override ค่าใน :root
+   JS จะ set attribute นี้เมื่อผู้ใช้กด toggle หรือ OS เป็น dark
+======================================== */
+
+[data-theme="dark"] {
+
+    /* ===== Backgrounds (เข้มขึ้น 3 ระดับ) ===== */
+    --bg-body:     #0f172a;    /* เข้มที่สุด สีพื้นหลัง */
+    --bg-surface:  #1e293b;    /* กลาง สีพื้น card / sidebar */
+    --bg-elevated: #293548;    /* อ่อนกว่านิด สำหรับ dropdown / panel */
+    --bg-hover:    #334155;    /* สีเมื่อ hover */
+
+    /* ===== Text (สว่างขึ้น) ===== */
+    --text-primary:   #f1f5f9;  /* ตัวหนังสือหลัก ขาวอมเทา */
+    --text-secondary: #94a3b8;  /* ตัวหนังสือรอง เทากลาง */
+    --text-muted:     #64748b;  /* ตัวหนังสือซีด */
+
+    /* ===== Borders & Shadows (เข้มขึ้น เงาเด่นขึ้น) ===== */
+    --border-color: #334155;
+    --shadow-sm:    0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-md:    0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --shadow-lg:    0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    --shadow-glow:  0 0 20px rgba(99, 102, 241, 0.45);
+    /* Brand colors (primary, success, warning, danger) ไม่ต้องเปลี่ยน
+       เพราะ Indigo/Green/Yellow/Red ใช้ได้ทั้ง light และ dark */
+}
+
+/* ========================================
+   SMOOTH THEME TRANSITION (Step 9)
+   ทำให้การสลับ theme ดูลื่น ไม่กระโดด
+   เพิ่ม transition ให้ element หลักที่ "เปลี่ยนสี" เมื่อสลับ theme
+======================================== */
+
+body,
+.sidebar,
+.topbar,
+.stat-card,
+.chart-card,
+.table-card,
+.ticket-stat,
+.filter-bar__input,
+.filter-bar__select,
+.notification-panel,
+.toast {
+    transition:
+        background-color 0.3s ease,
+        border-color     0.3s ease,
+        color            0.3s ease,
+        box-shadow       0.3s ease;
+    /* transition หลายค่าพร้อมกัน — ใช้ , คั่น */
+}
