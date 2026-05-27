@@ -250,10 +250,11 @@ const NotificationSystem = (function () {
   ───────────────────────────────────────── */
   function startStatsSimulation() {
     setInterval(function () {
-      /* สุ่มค่าใหม่ภายในช่วงที่สมจริง */
-      updateStatCard('[data-counter="1247"]', 1200, 1350);
-      updateStatCard('[data-counter="284"]',  250,  320);
-      updateStatCard('[data-counter="58"]',   40,   80);
+      /* สุ่มค่าใหม่ในช่วงที่สมจริงกับข้อมูลจริงใน mock-tickets.json
+         Total=15, Open=4, Resolved=5 → สุ่มใกล้เคียงค่าจริง */
+      updateStatCard('#counterTotal',    12, 18);
+      updateStatCard('#counterOpen',      2,  7);
+      updateStatCard('#counterResolved',  3,  8);
     }, STATS_INTERVAL);
   }
 

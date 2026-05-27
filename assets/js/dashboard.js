@@ -9,13 +9,54 @@
     /* เช็คว่าอยู่หน้า dashboard จริง */
     if ($('#teamGrid').length === 0) return;
 
-    loadSupportTeam();                      /* โหลด team เมื่อเปิดหน้า */
+    loadDashboardStats();                   /* โหลดตัวเลขจาก mock-tickets.json */
+    loadSupportTeam();                      /* โหลด team จาก API */
 
     /* ปุ่ม Refresh — โหลดใหม่ */
     $('#refreshTeam').on('click', function () {
       loadSupportTeam();
     });
   });
+
+  /* ─────────────────────────────────────────
+     โหลดสถิติจาก mock-tickets.json
+     นับ ticket แต่ละสถานะแล้ว animate ตัวเลขจริง
+  ───────────────────────────────────────── */
+  async function loadDashboardStats() {
+    try {
+      const tickets = await $.getJSON('assets/data/mock-tickets.json');
+      /* นับจำนวนแต่ละสถานะ */
+      const total    = tickets.length;
+      const open     = tickets.filter(function (t) { return t.status === 'open'; }).length;
+      const resolved = tickets.filter(function (t) { return t.status === 'resolved'; }).length;
+
+      /* Animate ตัวเลขจริงเข้า stat cards */
+      animateCounter('#counterTotal',    total);
+      animateCounter('#counterOpen',     open);
+      animateCounter('#counterResolved', resolved);
+
+    } catch (err) {
+      console.warn('Dashboard stats: using default values', err);
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     Animate ตัวเลขจาก 0 → target ด้วย GSAP
+  ───────────────────────────────────────── */
+  function animateCounter(selector, target) {
+    const $el = $(selector);
+    if (!$el.length) return;
+
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: function () {
+        $el.text(Math.round(obj.val).toLocaleString('en-US'));
+      },
+    });
+  }
 
   /* ─────────────────────────────────────────
      โหลด Support Team จาก DummyJSON API
