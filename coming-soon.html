@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Helpdesk System | Coming Soon</title>
+
+    <!-- ===== Google Fonts ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- ===== Bootstrap 5 CSS ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- ===== Font Awesome ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- ===== AOS ===== -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- ===== Our CSS ===== -->
+    <link rel="stylesheet" href="assets/css/themes.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg" />
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- ========== SIDEBAR ========== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__logo">
+                <div class="sidebar__logo-icon">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <span class="sidebar__logo-text">HelpDesk Pro</span>
+            </div>
+
+            <nav class="sidebar__nav">
+                <div class="sidebar__nav-label">Main</div>
+
+                <a href="index.html" class="sidebar__nav-item">
+                    <i class="fa-solid fa-grip"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="tickets.html" class="sidebar__nav-item">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>Tickets</span>
+                    <span class="sidebar__nav-badge">12</span>
+                </a>
+
+                <!-- coming-soon links → ชี้กลับมาหน้านี้ -->
+                <a href="coming-soon.html" class="sidebar__nav-item sidebar__nav-item--active" id="navInventory">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>Inventory</span>
+                </a>
+
+                <a href="coming-soon.html" class="sidebar__nav-item" id="navAnalytics">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+
+                <div class="sidebar__nav-label">Account</div>
+
+                <a href="coming-soon.html" class="sidebar__nav-item" id="navProfile">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a>
+
+                <a href="coming-soon.html" class="sidebar__nav-item" id="navSettings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="sidebar__avatar">JD</div>
+                    <div class="sidebar__user-info">
+                        <div class="sidebar__user-name">John Doe</div>
+                        <div class="sidebar__user-role">IT Admin</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== MAIN AREA ========== -->
+        <div class="main-area">
+
+            <!-- Topbar -->
+            <header class="topbar">
+                <button class="topbar__toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="topbar__search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search tickets, devices, users..." class="topbar__search-input" />
+                    <kbd class="topbar__search-kbd">⌘K</kbd>
+                </div>
+                <div class="topbar__actions">
+                    <button class="topbar__icon-btn" id="themeToggle" aria-label="Toggle theme" data-tooltip="Toggle theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="topbar__profile">
+                        <div class="topbar__avatar">JD</div>
+                        <i class="fa-solid fa-chevron-down topbar__profile-arrow"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Coming Soon Content -->
+            <main class="content">
+
+                <div class="cs-wrapper">
+
+                    <!-- Icon วงกลม + rocket -->
+                    <div class="cs-icon" data-aos="zoom-in">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+
+                    <!-- Text -->
+                    <h1 class="cs-title" data-aos="fade-up" data-aos-delay="100">Coming Soon</h1>
+                    <p class="cs-subtitle" data-aos="fade-up" data-aos-delay="150">
+                        This section is under development. <br />
+                        We're building something great — stay tuned!
+                    </p>
+
+                    <!-- Back button -->
+                    <a href="index.html" class="btn btn-primary cs-btn" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back to Dashboard
+                    </a>
+
+                    <!-- Feature roadmap cards -->
+                    <div class="cs-cards" data-aos="fade-up" data-aos-delay="250">
+
+                        <div class="cs-card">
+                            <div class="cs-card__icon" style="background: rgba(99,102,241,0.12); color: #6366f1;">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <h3 class="cs-card__title">Inventory</h3>
+                            <p class="cs-card__desc">Track hardware, software licenses, and all IT assets across departments.</p>
+                            <span class="cs-card__badge">Planned</span>
+                        </div>
+
+                        <div class="cs-card">
+                            <div class="cs-card__icon" style="background: rgba(16,185,129,0.12); color: #10b981;">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3 class="cs-card__title">Analytics</h3>
+                            <p class="cs-card__desc">Deep-dive reports on ticket trends, team performance, and SLA compliance.</p>
+                            <span class="cs-card__badge">Planned</span>
+                        </div>
+
+                        <div class="cs-card">
+                            <div class="cs-card__icon" style="background: rgba(245,158,11,0.12); color: #f59e0b;">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <h3 class="cs-card__title">Profile</h3>
+                            <p class="cs-card__desc">Manage account details, notification preferences, and security settings.</p>
+                            <span class="cs-card__badge">Planned</span>
+                        </div>
+
+                        <div class="cs-card">
+                            <div class="cs-card__icon" style="background: rgba(59,130,246,0.12); color: #3b82f6;">
+                                <i class="fa-solid fa-gear"></i>
+                            </div>
+                            <h3 class="cs-card__title">Settings</h3>
+                            <p class="cs-card__desc">System-wide configuration, user roles, integrations, and email templates.</p>
+                            <span class="cs-card__badge">Planned</span>
+                        </div>
+
+                    </div>
+                    <!-- /.cs-cards -->
+
+                </div>
+                <!-- /.cs-wrapper -->
+
+            </main>
+        </div>
+        <!-- /.main-area -->
+
+    </div>
+    <!-- /.app-container -->
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== Scripts ===== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
